@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="2900" pageHeight="842" columnWidth="2860" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58640e09-644f-4c02-91b6-1c938c11fc64">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="1285"/>
+	<property name="ireport.y" value="2"/>
+	<queryString>
+		<![CDATA[select*from servidores]]>
+	</queryString>
+	<field name="idserv" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idudn" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idsite" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="host" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nameserver" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servicio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sqlversion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="edicion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="antivirus" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sistemaoperativo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sockets" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cores" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rammb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ramdinamik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="architecture" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diskgb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidadesgb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="networkisci" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hypervisor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="versionhyper" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="procesador" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servicestag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="1007" y="0" width="124" height="79" uuid="dc30bebb-5d94-4392-857d-382a99603b5b"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1163" y="14" width="268" height="46" uuid="6be06095-689f-44a9-bf69-1dd47bea5b91"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Inventory-servers-xcaret]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="2" width="71" height="20" uuid="ab8d4ebf-48a1-4af7-aa94-cb22e40c1c45"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="2" width="76" height="20" uuid="3424b3ce-b23d-48bd-b204-1853333dce07"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Idudn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="2" width="50" height="20" uuid="3862fe4e-697d-476c-8e83-1403b842d473"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Idsite]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="2" width="64" height="20" uuid="27111c23-68c0-4889-8f89-d75d56ae9629"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Host]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="2" width="78" height="20" uuid="cbc45341-44dc-4acc-9d6f-c7fd8a618826"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nameserver]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="2" width="57" height="20" uuid="75cac5fb-107c-4df5-a01c-d45dc0842fe2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="2" width="70" height="20" uuid="385452a7-3faf-44fe-874e-80e047bf9580"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[IP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="776" y="5" width="54" height="20" uuid="cbcc7fd0-a529-4ce1-9b82-dbfe4b8f98c4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="689" y="2" width="58" height="20" uuid="37f06a43-b6b5-4e7a-bbcd-dd43aaafec71"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="843" y="0" width="100" height="20" uuid="18fea179-4aff-4184-b2d0-fb1e7f3a960c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SQL-version]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="960" y="2" width="100" height="20" uuid="46510a98-b679-4ddd-b158-14cc1c64cb12"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Edicion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1083" y="2" width="67" height="20" uuid="410249a7-cae1-42b4-8720-4708dcc17e9e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Antivirus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1183" y="5" width="89" height="20" uuid="a469998d-afb5-40a7-b25e-e2a2e980349d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sistema-Operativo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1303" y="5" width="100" height="20" uuid="8da18ba7-0678-46f2-bf81-1c16a3938a4b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sockets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1427" y="5" width="64" height="20" uuid="306af462-2e92-4fe1-95ff-ce2b7d4307e9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1526" y="5" width="47" height="20" uuid="6324527a-fa88-45d8-b456-c1460d3cbcbe"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CPU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1613" y="5" width="69" height="20" uuid="aeddf00e-2513-4990-9bd6-c6e25badf3d3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RAM-MB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1710" y="5" width="76" height="20" uuid="e1a03ae4-08ed-498a-b031-40df1fb11605"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RAM-Dinamik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1811" y="5" width="84" height="20" uuid="cbb52787-7e23-4f3c-944a-3b2ae2879004"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Architecture]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1924" y="5" width="56" height="20" uuid="4c351887-3dc7-4d8c-9316-0c3b38de86b7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Disk-Gb]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2009" y="5" width="81" height="20" uuid="54be2b88-b529-4443-91df-1236d6771a21"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Unidades-Gb]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2120" y="5" width="77" height="20" uuid="0138ef33-e0de-4919-a5de-e418763d0e87"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Network-iSCI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2220" y="5" width="70" height="20" uuid="e6af41d3-b366-4de4-a6d5-b7abfd012113"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hypervisor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2313" y="5" width="84" height="20" uuid="1a8bfe34-b1af-453f-8f4b-aa401735c559"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Version-Hyper]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2416" y="5" width="50" height="20" uuid="3d2a6855-0a79-413d-a5d3-076dd693d92a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2495" y="5" width="61" height="20" uuid="760bcb0b-bf00-4ac2-b0b5-dcd5de3628df"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2578" y="5" width="79" height="20" uuid="65906d20-8816-4d60-aad4-dbee516941f3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Procesador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2675" y="5" width="74" height="20" uuid="d8ae8d2a-1f89-4569-b71f-f7029a441e73"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Services-Tag]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2771" y="5" width="67" height="20" uuid="ddc78607-50dd-4576-91c9-90c5c13a1783"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Activo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="150" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="10" width="71" height="20" uuid="b32261b8-c000-4f05-a1c0-40d342815c08"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="10" width="76" height="20" uuid="b7ab9eca-45d6-4d03-bda0-45d08895edde"/>
+				<textFieldExpression><![CDATA[$F{idudn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="10" width="50" height="20" uuid="0aba2865-07d5-4def-92cf-cf7efe8e3212"/>
+				<textFieldExpression><![CDATA[$F{idsite}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="10" width="64" height="20" uuid="3fe91532-5a98-4698-b093-8d662f1d3958"/>
+				<textFieldExpression><![CDATA[$F{host}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="10" width="78" height="20" uuid="5b727b56-6213-42b1-bf35-e169f40d75b0"/>
+				<textFieldExpression><![CDATA[$F{nameserver}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="10" width="57" height="20" uuid="863e8587-5ea4-4730-8157-8541cecf8444"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="10" width="70" height="20" uuid="6ea9152c-e75e-4a2d-a1e0-82a4e1f0e121"/>
+				<textFieldExpression><![CDATA[$F{ip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="689" y="10" width="58" height="20" uuid="ec2bbf2b-944c-4679-9e6d-4b666ff1bfd5"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="776" y="10" width="54" height="20" uuid="050d1cd3-3b92-4012-852c-80609c557bc9"/>
+				<textFieldExpression><![CDATA[$F{servicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="843" y="10" width="100" height="20" uuid="11612956-763d-453d-81f3-37e38e280780"/>
+				<textFieldExpression><![CDATA[$F{sqlversion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="960" y="9" width="100" height="20" uuid="1c6d7881-1876-457c-bf22-340f1caf2ceb"/>
+				<textFieldExpression><![CDATA[$F{edicion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1083" y="10" width="67" height="20" uuid="1f21b2eb-4bee-41ee-af6a-a40c3233db69"/>
+				<textFieldExpression><![CDATA[$F{antivirus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1183" y="12" width="89" height="20" uuid="33b227f0-4dab-4717-9a94-180939d45b38"/>
+				<textFieldExpression><![CDATA[$F{sistemaoperativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1303" y="9" width="100" height="20" uuid="4ca60804-df0a-4a15-9df5-cb7ab858c382"/>
+				<textFieldExpression><![CDATA[$F{sockets}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1427" y="10" width="64" height="20" uuid="5be2f22a-bf51-4df1-8975-bc228e015e46"/>
+				<textFieldExpression><![CDATA[$F{cores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1526" y="9" width="47" height="20" uuid="e6017414-5acd-4e0b-9b2a-92b61d9307fe"/>
+				<textFieldExpression><![CDATA[$F{cpu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1613" y="12" width="69" height="20" uuid="2ea14a0d-633d-42db-a482-b0b13cb26bdb"/>
+				<textFieldExpression><![CDATA[$F{rammb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1710" y="9" width="76" height="20" uuid="b231ab1c-6395-4dfd-b189-2eedbfd2fb2e"/>
+				<textFieldExpression><![CDATA[$F{ramdinamik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1811" y="9" width="84" height="20" uuid="9ac6f71f-d66c-4aff-ad01-af03b7b58453"/>
+				<textFieldExpression><![CDATA[$F{architecture}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1924" y="10" width="56" height="20" uuid="2b31bfb1-5aeb-4494-bbae-0ff39fb3ac36"/>
+				<textFieldExpression><![CDATA[$F{diskgb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2009" y="12" width="81" height="20" uuid="59598082-6173-4ae1-9a8a-d729fdb55394"/>
+				<textFieldExpression><![CDATA[$F{unidadesgb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2120" y="12" width="77" height="20" uuid="2c37b92f-fd00-40e3-a3bc-0cd9592881de"/>
+				<textFieldExpression><![CDATA[$F{networkisci}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2220" y="10" width="70" height="20" uuid="7bc99bc0-0f60-4e79-a2b1-4d66762b4505"/>
+				<textFieldExpression><![CDATA[$F{hypervisor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2313" y="10" width="84" height="20" uuid="c8e1bc61-8e1d-497a-9fc4-4c9ff1101795"/>
+				<textFieldExpression><![CDATA[$F{versionhyper}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2416" y="10" width="50" height="20" uuid="d22d69f1-6614-4c34-ba8a-97351a0f3cd7"/>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2495" y="10" width="61" height="20" uuid="cbe1ab4d-f20f-40bd-9c42-bebb8e3ba11a"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2578" y="10" width="73" height="20" uuid="72bcd639-8c52-41e3-ba4b-fbfc62d3aac5"/>
+				<textFieldExpression><![CDATA[$F{procesador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2675" y="10" width="74" height="20" uuid="e4668414-997b-485e-9bf2-2a6ead0478f6"/>
+				<textFieldExpression><![CDATA[$F{servicestag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2771" y="11" width="67" height="20" uuid="0445c1d0-8f47-4fbf-a07f-be5873a704c8"/>
+				<textFieldExpression><![CDATA[$F{activo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss Z">
+				<reportElement x="1183" y="15" width="181" height="30" uuid="2a216e56-ea58-4944-899b-95cdf7b02fc9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1491" y="15" width="100" height="20" uuid="263f8597-ede8-435e-b409-1de5c2955673"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1379" y="15" width="100" height="20" uuid="59c41511-e0e0-4f7f-b757-c6328171091f"/>
+				<text><![CDATA[Pagina]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fdf3388-bea0-472f-ab7c-2e5edf61636f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="3bcb8a62-b4c9-499e-bb74-af7cc0cfa0e7"/>
+	<parameter name="udn" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select idserv,udn, site,host,nameserver,tipo,ip,estado,servicio,sqlversion,edicion,antivirus,
+sistemaoperativo,sockets,cores,CPU,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,
+hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo 
+from servidores inner join udn on(udn.idudn=servidores.idudn)
+inner join site on(site.idsite=servidores.idsite) 
+where udn=$P{udn}]]>
+	</queryString>
+	<field name="idserv" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="udn" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="site" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="host" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nameserver" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servicio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sqlversion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="edicion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="antivirus" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sistemaoperativo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sockets" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cores" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CPU" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rammb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ramdinamik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="architecture" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diskgb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidadesgb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="networkisci" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hypervisor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="versionhyper" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="procesador" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servicestag" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="activo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="69" y="2" width="100" height="20" uuid="39ea139a-e264-4959-90ae-094619dd5e7d"/>
+				<text><![CDATA[site]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="2" width="100" height="20" uuid="42ea35f8-06d1-4bf1-beef-5cd6128fafdf"/>
+				<text><![CDATA[udn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="2" width="100" height="20" uuid="f78c9725-1036-4d40-849e-ce531693cd0c"/>
+				<text><![CDATA[host]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="2" width="100" height="20" uuid="e0d24ee7-22ba-413a-a149-d764cbb92fad"/>
+				<text><![CDATA[nameserver]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="2" width="100" height="20" uuid="2af2f742-7e37-4c17-bc4d-b81b5f43b162"/>
+				<text><![CDATA[tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="2" width="100" height="20" uuid="1a8ed51d-c612-4fa9-b8a3-db5abe69a85d"/>
+				<text><![CDATA[ip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="2" width="100" height="20" uuid="11acf273-299a-4ef8-802c-e04fc0e895e1"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="524" y="2" width="100" height="20" uuid="1f6bca90-9f50-4034-9a60-ef785900e6d5"/>
+				<text><![CDATA[servicio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="119" y="28" width="100" height="20" uuid="9e455cc1-07e7-4878-a62d-08d22c905dac"/>
+				<textFieldExpression><![CDATA[$F{site}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="26" width="100" height="20" uuid="fa2f6805-110f-4716-b447-d973ae764c3f"/>
+				<textFieldExpression><![CDATA[$F{udn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="26" width="100" height="20" uuid="259fe3f8-1e5b-4108-9616-a09d2a01c929"/>
+				<textFieldExpression><![CDATA[$F{host}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="19" width="100" height="20" uuid="f01aa96a-d078-4305-9623-8a7d677dfffb"/>
+				<textFieldExpression><![CDATA[$F{nameserver}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="11" width="100" height="20" uuid="26f56b4c-3099-4cc7-88a5-8cec25b439e7"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="16" width="100" height="20" uuid="1c4e5866-7c4a-4f92-8a3e-24ad1afbb929"/>
+				<textFieldExpression><![CDATA[$F{ip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="16" width="100" height="20" uuid="7f3f0b7c-e4ab-4df7-9cc4-5586ed8a53c0"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="524" y="12" width="100" height="20" uuid="11784c09-61b9-4509-a4b0-5a495fde7bd1"/>
+				<textFieldExpression><![CDATA[$F{servicio}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="491" y="0" width="360" height="140" uuid="836ba71b-b862-4804-aaef-96de8328cfd9"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="97b15cd4-ddc9-46e9-b4e0-e7a6f743a57c">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="73b983a8-955a-42b7-a138-1f735a58b925">
+						<jr:tableHeader height="30"/>
+						<jr:tableFooter height="30"/>
+						<jr:columnHeader height="30">
+							<textField>
+								<reportElement x="90" y="0" width="90" height="30" uuid="6af8fd78-9427-47fd-b7e3-96e3dfd9bedd"/>
+								<textFieldExpression><![CDATA[$F{architecture}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter height="30"/>
+						<jr:detailCell height="20"/>
+					</jr:column>
+					<jr:column width="90" uuid="63cd274c-4647-41b9-ae02-7dc9fa165675">
+						<jr:tableHeader height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e748b3f6-60e4-4b16-a76d-37b73cf6c219"/>
+								<text><![CDATA[Aequitectura]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:tableFooter height="30"/>
+						<jr:columnHeader height="30"/>
+						<jr:columnFooter height="30"/>
+						<jr:detailCell height="20"/>
+					</jr:column>
+					<jr:column width="90" uuid="c2aff771-919b-4498-8aa8-175f44a56f9e">
+						<jr:tableHeader height="30"/>
+						<jr:tableFooter height="30"/>
+						<jr:columnHeader height="30"/>
+						<jr:columnFooter height="30"/>
+						<jr:detailCell height="20"/>
+					</jr:column>
+					<jr:column width="90" uuid="747ba221-4e58-42b4-a301-1d300589ebcb">
+						<jr:tableHeader height="30"/>
+						<jr:tableFooter height="30"/>
+						<jr:columnHeader height="30"/>
+						<jr:columnFooter height="30"/>
+						<jr:detailCell height="20"/>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="340" splitType="Stretch"/>
+	</summary>
+</jasperReport>
