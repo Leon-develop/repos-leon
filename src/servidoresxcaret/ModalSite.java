@@ -245,13 +245,9 @@ this.dispose();
            //   NewJFrame s=new NewJFrame();
              //  s.setVisible(true);
            }
-      
-
-
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
       
          AgregarServers.ids.setText(idd);

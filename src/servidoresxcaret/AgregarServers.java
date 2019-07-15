@@ -7,7 +7,6 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Xcaret_servicio;
-import Vista.VentanaAdmin;
 import static Vista.VentanaAdmin.panel;
 import static Vista.VentanaInvitado.vXcestacerrado;
 import ds.desktop.notify.DesktopNotify;
@@ -60,19 +59,19 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String cores = co.getText();
             String cpu = cp.getText();
             String rammb = ra.getText();
-            String ramdinamik = ram.getText();
+            String ramdinamik = ram.getSelectedItem().toString();
             String architecture = arq.getText();
             String disgb = di.getText();
             String unidadesgb = unid.getText();
             String networkisci = net.getText();
             String hypervisor = hy.getText();
             String versionhyper = vh.getText();
-            String marca=marc.getText();
+            String marca=idmarc.getText();
             String modelo=mode.getText();
             String procesador=process.getText();
             String servicestag = sertag.getText();
-            String activo = act.getSelectedItem().toString();
-              
+            String activo = act.getText();
+             
            // Date fechaParseada = null;
           /*   jDateChooser1.setDate(fechaParseada);
             
@@ -150,17 +149,17 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.co.setText(this.xcaret.getCores());
     this.cp.setText(this.xcaret.getCpu());
     this.ra.setText(this.xcaret.getRammb());
-    this.ram.setText(this.xcaret.getRamdinamik());
+    this.ram.setSelectedItem(this.xcaret.getRamdinamik());
     this.arq.setText(this.xcaret.getArchitecture());
     this.di.setText(this.xcaret.getDiskgb());
     this.unid.setText(this.xcaret.getUnidadesgb());
     this.hy.setText(this.xcaret.getHypervisor());
     this.vh.setText(this.xcaret.getVersionhyper());
-    this.marc.setText(this.xcaret.getMarca());
+    this.idmarc.setText(this.xcaret.getMarca());
     this.mode.setText(this.xcaret.getModelo());
     this.process.setText(this.xcaret.getProcesador());
     this.sertag.setText(this.xcaret.getServicestag());
-    this.act.setSelectedItem(this.xcaret.getActivo());
+    this.act.setText(this.xcaret.getActivo());
     
     
    
@@ -192,7 +191,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         idestado = new javax.swing.JComboBox<>();
-        marc = new javax.swing.JTextField();
         mode = new javax.swing.JTextField();
         process = new javax.swing.JTextField();
         Registrar = new javax.swing.JButton();
@@ -216,7 +214,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel20 = new javax.swing.JLabel();
         ra = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        ram = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         arq = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -232,7 +229,10 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel29 = new javax.swing.JLabel();
         sertag = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        act = new javax.swing.JComboBox<>();
+        act = new javax.swing.JTextField();
+        ram = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        idmarc = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -296,7 +296,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
 
         Buscar.setBackground(new java.awt.Color(255, 255, 255));
         Buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Buscar.setText("Buscar");
+        Buscar.setText("Consultar");
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -305,7 +305,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
 
         Buscar1.setBackground(new java.awt.Color(255, 255, 255));
         Buscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Buscar1.setText("Buscar");
+        Buscar1.setText("Consultar");
         Buscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Buscar1ActionPerformed(evt);
@@ -328,12 +328,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel12.setText("Mod_Procesador");
 
         idestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Running", "OFF", "Replica" }));
-
-        marc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marcActionPerformed(evt);
-            }
-        });
 
         Registrar.setBackground(new java.awt.Color(255, 255, 255));
         Registrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -393,7 +387,25 @@ public class AgregarServers extends javax.swing.JInternalFrame {
 
         jLabel30.setText("Activo");
 
-        act.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        ram.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+
+        jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        idmarc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idmarcActionPerformed(evt);
+            }
+        });
+        idmarc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idmarcKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -445,7 +457,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel20)
                             .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24)
@@ -456,54 +468,64 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                             .addComponent(jLabel22)
                             .addComponent(cp, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                             .addComponent(jLabel19)
-                            .addComponent(jLabel21)
-                            .addComponent(ram)
                             .addComponent(arq)
                             .addComponent(jLabel26)
                             .addComponent(hy)
                             .addComponent(jLabel27)
-                            .addComponent(vh))
-                        .addGap(48, 48, 48)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel29)
-                            .addComponent(sertag)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addGap(158, 158, 158))
-                            .addComponent(marc)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(mode)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(process)
-                            .addComponent(act, 0, 200, Short.MAX_VALUE))
-                        .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(vh)
+                            .addComponent(ram, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel21)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(424, 424, 424))))
+                        .addGap(139, 139, 139)))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(idmarc, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel29)
+                        .addComponent(sertag, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel30)
+                            .addGap(158, 158, 158))
+                        .addComponent(jLabel10)
+                        .addComponent(mode)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(process)
+                        .addComponent(act)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel10))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10))
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ram, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(marc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ram, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1)
+                                .addComponent(idmarc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,7 +566,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addComponent(unid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(2, 2, 2))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -583,7 +604,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                         .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(46, 46, 46))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -678,10 +699,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_Buscar1ActionPerformed
 
-    private void marcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_marcActionPerformed
-
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         if(no.getText().isEmpty()){
   DesktopNotify.showDesktopMessage("Advertencia", "El campo Numero es obligatorio", DesktopNotify.TIP);
@@ -725,6 +742,21 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NameserverActionPerformed
 
+    private void idmarcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idmarcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idmarcActionPerformed
+
+    private void idmarcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idmarcKeyPressed
+       JOptionPane.showMessageDialog(null, "Clic en el boton Consultar para agregar");
+       idmarc.setText("");
+    }//GEN-LAST:event_idmarcKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ModalMarca dialog = new ModalMarca(new javax.swing.JFrame(), true);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
@@ -733,7 +765,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     private javax.swing.JTextField IP;
     private javax.swing.JTextField Nameserver;
     public static javax.swing.JButton Registrar;
-    private javax.swing.JComboBox<String> act;
+    private javax.swing.JTextField act;
     private javax.swing.JTextField ant;
     private javax.swing.JTextField arq;
     private javax.swing.JTextField co;
@@ -742,7 +774,9 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     private javax.swing.JTextField ed;
     private javax.swing.JTextField hy;
     private javax.swing.JComboBox<String> idestado;
+    public static javax.swing.JTextField idmarc;
     public static javax.swing.JTextField ids;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -773,13 +807,12 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField marc;
     private javax.swing.JTextField mode;
     private javax.swing.JTextField net;
     private javax.swing.JTextField no;
     private javax.swing.JTextField process;
     private javax.swing.JTextField ra;
-    private javax.swing.JTextField ram;
+    private javax.swing.JComboBox<String> ram;
     private javax.swing.JTextField sertag;
     private javax.swing.JTextField serv;
     private javax.swing.JTextField so;

@@ -483,7 +483,8 @@ public class Xcaret_servicio {
     + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
 "from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
 " inner join site on(site.idsite=servidores.idsite) \n" +
-"where udn.idudn and site.idsite\n" +
+         "inner join marca on(marca.idmarca=servidores.idmarca)\n"+
+"where udn.idudn and site.idsite and marca.idmarca\n" +
 " order by (site) asc");
 ResultSet resultado = consulta.executeQuery();
 while(resultado.next()){
