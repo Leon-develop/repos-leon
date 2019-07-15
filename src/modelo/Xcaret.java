@@ -47,7 +47,7 @@ public class Xcaret {
    private String procesador;
    private String servicestag;
    private String activo;
-   private String fecha;
+
   
     public Xcaret() {
   
@@ -81,13 +81,13 @@ public class Xcaret {
         this.procesador = null;
         this.servicestag = null;
         this.activo = null;
-        this.fecha = null;
+       
     }
     public Xcaret(int idserv, String numero, String idudn, String idsite, String host, String nameserver, 
         String tipo, String ip, String estado, String servicio, String sqlversion, String edicion, String antivirus,
         String sistemaoperativo, String sockets, String cores, String cpu, String rammb, String ramdinamik, String architecture,
         String diskgb, String unidadesgb, String networkisci, String hypervisor, String versionhyper, String marca, String modelo,
-        String procesador, String servicestag, String activo, String fecha){
+        String procesador, String servicestag, String activo){
         
         this.idserv = idserv;
         this.numero = numero;
@@ -119,7 +119,7 @@ public class Xcaret {
         this.procesador = procesador;
         this.servicestag = servicestag;
         this.activo = activo;
-        this.fecha = fecha;
+     
     }
     
  public int getIdserv() {
@@ -315,16 +315,7 @@ public class Xcaret {
         this.activo = activo;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-     
-        
-        this.fecha = fecha;// 
-    }
-   
+ 
  
    
    
@@ -335,12 +326,10 @@ public class Xcaret {
    +",sockets="+sockets+",cores"+cores+",cpu="+cpu+",rammb="+rammb+",ramdinamik="+ramdinamik+",architecture="+architecture
    +",diskgb="+diskgb+", unidadesgb="+unidadesgb+",networkisci="+networkisci+",hypervisor="+hypervisor
    +",versionhyper="+versionhyper+", marca=" + marca 
-   +", modelo=" + modelo +", procesador=" + procesador +",servicestag="+servicestag +", activo="+activo+",fecha="+fecha + '}';
+   +", modelo=" + modelo +", procesador=" + procesador +",servicestag="+servicestag +", activo="+activo+ '}';
     }
 
-    public void setFecha(Date fechaParseada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
    
 
