@@ -106,8 +106,7 @@ public class Xcaret_servicio {
                  consulta.setString(27, xcaret.getProcesador());
                  consulta.setString(28, xcaret.getServicestag());
                  consulta.setString(29, xcaret.getActivo());
-             
-                 consulta.setInt(31, xcaret.getIdserv());
+                 consulta.setInt(30, xcaret.getIdserv());
              }
              consulta.execute();
          }catch(SQLException ex){

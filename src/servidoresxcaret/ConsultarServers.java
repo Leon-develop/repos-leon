@@ -79,7 +79,6 @@ AgregarServers masc;
         n.addColumn("Procesador");
         n.addColumn("Services-Tag");
         n.addColumn("Activo");
-        n.addColumn("Fecha");
         this.m.setModel(n);
         this.cargar_lista_producto();
         
