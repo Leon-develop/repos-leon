@@ -72,7 +72,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String procesador=process.getText();
             String servicestag = sertag.getText();
             String activo = act.getSelectedItem().toString();
-              
+             
            // Date fechaParseada = null;
           /*   jDateChooser1.setDate(fechaParseada);
             
