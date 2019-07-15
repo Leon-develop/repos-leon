@@ -34,8 +34,8 @@ public class Xcaret_servicio {
              if(xcaret.getIdserv() == 0){
              consulta=conexion.prepareStatement("INSERT INTO servidores (idserv,numero,idudn,idsite,host,"
              + "nameserver,tipo,ip,estado,servicio, sqlversion, edicion, antivirus, sistemaoperativo, sockets, cores, "
-                     + "cpu, rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo,fecha)"
-                     + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     + "cpu, rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo)"
+                     + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
              consulta.setInt(1, xcaret.getIdserv());
              consulta.setString(2, xcaret.getNumero());
              consulta.setString(3, xcaret.getIdudn());
@@ -66,7 +66,7 @@ public class Xcaret_servicio {
              consulta.setString(28, xcaret.getProcesador());
              consulta.setString(29, xcaret.getServicestag());
              consulta.setString(30, xcaret.getActivo());
-             consulta.setString(31, xcaret.getFecha());
+            
           
              
              }else{
@@ -75,7 +75,7 @@ public class Xcaret_servicio {
                  + "ip = ?, estado = ?, servicio = ?, sqlversion = ?,edicion =?,antivirus=?,sistemaoperativo=?,sockets=?,"
                          + "cores=?,cpu=?,rammb=?,ramdinamik=?,architecture=?,diskgb=?,unidadesgb=?,networkisci=?,"
                          + " hypervisor=?,versionhyper=?, marca = ?, modelo = ?, "
-                         + "procesador = ?,servicestag=?,activo=?,fecha = ? WHERE idserv =?";
+                         + "procesador = ?,servicestag=?,activo=? WHERE idserv =?";
                  consulta = conexion.prepareStatement(query);
                  consulta.setString(1, xcaret.getNumero());
                  consulta.setString(2, xcaret.getIdudn());
@@ -106,7 +106,7 @@ public class Xcaret_servicio {
                  consulta.setString(27, xcaret.getProcesador());
                  consulta.setString(28, xcaret.getServicestag());
                  consulta.setString(29, xcaret.getActivo());
-                 consulta.setString(30, xcaret.getFecha());
+             
                  consulta.setInt(31, xcaret.getIdserv());
              }
              consulta.execute();
@@ -156,7 +156,7 @@ public class Xcaret_servicio {
                 cl.setProcesador(rs.getString(28));
                 cl.setServicestag(rs.getString(29));
                 cl.setActivo(rs.getString(30));
-                cl.setFecha(rs.getString(31));
+             
                 c.add(cl);
             }
             stmt.close();
@@ -197,7 +197,7 @@ public class Xcaret_servicio {
     String procesador;
     String servicestag;
     String activo;
-    String fecha;
+
     
     public Xcaret_servicio() {
         this.idserv = 0;
@@ -230,7 +230,7 @@ public class Xcaret_servicio {
         this.procesador = "";
         this.servicestag = "";
         this.activo = "";
-        this.fecha = "";
+    
     }
 
     public int getIdserv() {
@@ -473,16 +473,7 @@ public class Xcaret_servicio {
         this.activo = activo;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        
-        this.fecha = fecha;
-        
-    }
-
+   
   
 
  public List<Xcaret> recuperarTodas(Connection conexion) throws SQLException{
@@ -490,7 +481,7 @@ public class Xcaret_servicio {
     try{
  PreparedStatement consulta = conexion.prepareStatement("select idserv,numero,udn, site,host,nameserver,tipo,ip,"
    + "estado, servicio,sqlversion,edicion,antivirus,sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,"
-    + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo,fecha \n" +
+    + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
 "from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
 " inner join site on(site.idsite=servidores.idsite) \n" +
 "where udn.idudn and site.idsite\n" +
@@ -505,7 +496,7 @@ while(resultado.next()){
  resultado.getString("ramdinamik"),resultado.getString("architecture"),resultado.getString("diskgb"),
  resultado.getString("unidadesgb"),resultado.getString("networkisci"),resultado.getString("hypervisor"),
  resultado.getString("versionhyper"), resultado.getString("marca")
- ,resultado.getString("modelo"),resultado.getString("procesador"),resultado.getString("servicestag"),resultado.getString("activo"), resultado.getString("fecha")));
+ ,resultado.getString("modelo"),resultado.getString("procesador"),resultado.getString("servicestag"),resultado.getString("activo")));
              
             }
 }catch(SQLException ex){

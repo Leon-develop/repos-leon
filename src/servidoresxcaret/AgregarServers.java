@@ -9,8 +9,7 @@ import Servicios.Conexion;
 import Servicios.Xcaret_servicio;
 import Vista.VentanaAdmin;
 import static Vista.VentanaAdmin.panel;
-import static Vista.VentanaAdmin.vXcestacerrado;
-import com.toedter.calendar.JDateChooser;
+import static Vista.VentanaInvitado.vXcestacerrado;
 import ds.desktop.notify.DesktopNotify;
 import java.sql.Connection;
 import java.sql.Date;
@@ -73,10 +72,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String procesador=process.getText();
             String servicestag = sertag.getText();
             String activo = act.getSelectedItem().toString();
-            int year = jDateChooser1.getCalendar().get(Calendar.YEAR);
-            int mes = jDateChooser1.getCalendar().get(Calendar.MONTH)+1;
-            int dia = jDateChooser1.getCalendar().get(Calendar.DAY_OF_MONTH);          
-            String fecha = (year + "-" + mes + "-" +dia);      
+              
            // Date fechaParseada = null;
           /*   jDateChooser1.setDate(fechaParseada);
             
@@ -122,7 +118,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             this.xcaret.setProcesador(procesador);
             this.xcaret.setServicestag(servicestag);
             this.xcaret.setActivo(activo);
-            this.xcaret.setFecha(fecha);
             
             
             try {
@@ -166,8 +161,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.process.setText(this.xcaret.getProcesador());
     this.sertag.setText(this.xcaret.getServicestag());
     this.act.setSelectedItem(this.xcaret.getActivo());
-    this.jDateChooser1.setDateFormatString(this.xcaret.getFecha());
-  
+    
     
    
 }
@@ -238,9 +232,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel29 = new javax.swing.JLabel();
         sertag = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         act = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -401,8 +393,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
 
         jLabel30.setText("Activo");
 
-        jLabel28.setText("Fecha");
-
         act.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -474,22 +464,19 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                             .addComponent(jLabel27)
                             .addComponent(vh))
                         .addGap(48, 48, 48)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel29)
-                                .addComponent(sertag)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel30)
-                                    .addGap(158, 158, 158))
-                                .addComponent(marc)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11)
-                                .addComponent(mode)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(process)
-                                .addComponent(jLabel28)
-                                .addComponent(act, 0, 200, Short.MAX_VALUE))
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel29)
+                            .addComponent(sertag)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addGap(158, 158, 158))
+                            .addComponent(marc)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(mode)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(process)
+                            .addComponent(act, 0, 200, Short.MAX_VALUE))
                         .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -596,7 +583,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                         .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(46, 46, 46))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -641,10 +628,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(act, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -709,17 +692,13 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         else if( ids.getText().isEmpty() ){
         DesktopNotify.showDesktopMessage("Advertencia", "Llene el campo Site", DesktopNotify.TIP);    
         }
-        else if(jDateChooser1.getDate()== null){
-          DesktopNotify.showDesktopMessage("Advertencia", "Debes ingresar la fecha de registro", DesktopNotify.TIP);  
-        }else{
-            
-        }
+       
                 
                    
             guardar();
               
             DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
-            this.cargar_lista_producto();
+            cargar_lista_producto();
             this.dispose();
             
             
@@ -764,7 +743,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     private javax.swing.JTextField hy;
     private javax.swing.JComboBox<String> idestado;
     public static javax.swing.JTextField ids;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -785,7 +763,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -821,7 +798,7 @@ Conexion cc=new Conexion();
  
     private void cargar_lista_producto() {
         if(vXcestacerrado(cons)){ 
-      cons = new ConsultarServers();
+     cons = new ConsultarServers();
       panel.add(cons);
       cons.setVisible(true);
        
