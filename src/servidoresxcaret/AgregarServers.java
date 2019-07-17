@@ -7,6 +7,7 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Xcaret_servicio;
+import Vista.VentanaAdmin;
 import static Vista.VentanaAdmin.panel;
 import static Vista.VentanaInvitado.vXcestacerrado;
 import ds.desktop.notify.DesktopNotify;
@@ -52,7 +53,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String estado=idestado.getSelectedItem().toString();
             String servicio = serv.getText();
             String sqlversion = sql.getText();
-            String edicion = ed.getText();
+            Object idedicion = ed.getText();
             String antivirus = ant.getText();
             String sistemaoperativo = so.getText();
             String sockets = soc.getText();
@@ -66,22 +67,13 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String networkisci = net.getText();
             String hypervisor = hy.getText();
             String versionhyper = vh.getText();
-            String marca=idmarc.getText();
+            Object idmarca=idmarc.getText();
             String modelo=mode.getText();
             String procesador=process.getText();
             String servicestag = sertag.getText();
             String activo = act.getText();
              
-           // Date fechaParseada = null;
-          /*   jDateChooser1.setDate(fechaParseada);
-            
-        try {
-            fechaParseada = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
-             
-        } catch (ParseException ex) {
-            Logger.getLogger(AgregarServers.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-           
+         
             
             
             
@@ -98,7 +90,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             this.xcaret.setEstado(estado);
             this.xcaret.setServicio(servicio);
             this.xcaret.setSqlversion(sqlversion);
-            this.xcaret.setEdicion(edicion);
+            this.xcaret.setIdedicion((String) idedicion);
             this.xcaret.setAntivirus(antivirus);
             this.xcaret.setSistemaoperativo(sistemaoperativo);
             this.xcaret.setSockets(sockets);
@@ -112,7 +104,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             this.xcaret.setNetworkisci(networkisci);
             this.xcaret.setHypervisor(hypervisor);
             this.xcaret.setVersionhyper(versionhyper);
-            this.xcaret.setMarca(marca);
+            this.xcaret.setIdmarca((String) idmarca);
             this.xcaret.setModelo(modelo);
             this.xcaret.setProcesador(procesador);
             this.xcaret.setServicestag(servicestag);
@@ -142,7 +134,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.idestado.setSelectedItem(this.xcaret.getEstado());
     this.serv.setText(this.xcaret.getServicio());
     this.sql.setText(this.xcaret.getSqlversion());
-    this.ed.setText(this.xcaret.getEdicion());
+   // this.ed.setText(this.xcaret.getIdedicion());
     this.ant.setText(this.xcaret.getAntivirus());
     this.so.setText(this.xcaret.getSistemaoperativo());
     this.soc.setText(this.xcaret.getSockets());
@@ -155,7 +147,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.unid.setText(this.xcaret.getUnidadesgb());
     this.hy.setText(this.xcaret.getHypervisor());
     this.vh.setText(this.xcaret.getVersionhyper());
-    this.idmarc.setText(this.xcaret.getMarca());
+   // this.idmarc.setText(this.xcaret.getIdmarca());
     this.mode.setText(this.xcaret.getModelo());
     this.process.setText(this.xcaret.getProcesador());
     this.sertag.setText(this.xcaret.getServicestag());
@@ -200,7 +192,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         sql = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        ed = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         ant = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -233,6 +224,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
         ram = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         idmarc = new javax.swing.JTextField();
+        ed = new javax.swing.JTextField();
+        Buscar2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -407,6 +400,26 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             }
         });
 
+        ed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edActionPerformed(evt);
+            }
+        });
+        ed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edKeyPressed(evt);
+            }
+        });
+
+        Buscar2.setBackground(new java.awt.Color(255, 255, 255));
+        Buscar2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Buscar2.setText("Consultar");
+        Buscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Buscar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -443,7 +456,6 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel4)
-                                .addComponent(ed, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                 .addComponent(jLabel15)
                                 .addComponent(ant, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                 .addComponent(jLabel16)
@@ -456,8 +468,12 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                 .addComponent(IP, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(jLabel8)
                             .addComponent(jLabel20)
-                            .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                            .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ed, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Buscar2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24)
@@ -498,7 +514,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(process)
                         .addComponent(act)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,8 +537,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ram, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))
+                                .addComponent(ram, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton1)
                                 .addComponent(idmarc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -538,9 +553,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addComponent(sql, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(31, 31, 31)
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -555,7 +568,10 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(arq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(arq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Buscar2)
+                                            .addComponent(ed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel23)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -604,8 +620,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(ra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(46, 46, 46))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -757,10 +773,25 @@ ModalMarca dialog = new ModalMarca(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void edActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edActionPerformed
+
+    private void edKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edKeyPressed
+
+    private void Buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar2ActionPerformed
+      ModalEdicion dialog = new ModalEdicion(new javax.swing.JFrame(), true);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true); 
+    }//GEN-LAST:event_Buscar2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Buscar1;
+    private javax.swing.JButton Buscar2;
     private javax.swing.JTextField Host;
     private javax.swing.JTextField IP;
     private javax.swing.JTextField Nameserver;
@@ -771,7 +802,7 @@ ModalMarca dialog = new ModalMarca(new javax.swing.JFrame(), true);
     private javax.swing.JTextField co;
     private javax.swing.JTextField cp;
     private javax.swing.JTextField di;
-    private javax.swing.JTextField ed;
+    public static javax.swing.JTextField ed;
     private javax.swing.JTextField hy;
     private javax.swing.JComboBox<String> idestado;
     public static javax.swing.JTextField idmarc;
@@ -830,18 +861,12 @@ Conexion cc=new Conexion();
  
  
     private void cargar_lista_producto() {
-        if(vXcestacerrado(cons)){ 
-     cons = new ConsultarServers();
-      panel.add(cons);
-      cons.setVisible(true);
-       
-       }else{
-           DesktopNotify.showDesktopMessage("Error", " La ventana Consultar Servers ya esta abierta. \n cierre la ventana e intentelo de nuevo", DesktopNotify.ERROR, 10000L);
+     
        //JOptionPane.showMessageDialog(this, "La ventana Consultar Datos ya esta abierta");
-       } 
-      /* ConsultarServers cons = new ConsultarServers();
+      
+       ConsultarServers cons = new ConsultarServers();
         VentanaAdmin.panel.add(cons);
         cons.setVisible(true);
-        */ 
+        }  
     }
-}
+

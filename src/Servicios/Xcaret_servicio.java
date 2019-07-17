@@ -33,8 +33,8 @@ public class Xcaret_servicio {
              PreparedStatement consulta;
              if(xcaret.getIdserv() == 0){
              consulta=conexion.prepareStatement("INSERT INTO servidores (idserv,numero,idudn,idsite,host,"
-             + "nameserver,tipo,ip,estado,servicio, sqlversion, edicion, antivirus, sistemaoperativo, sockets, cores, "
-                     + "cpu, rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo)"
+             + "nameserver,tipo,ip,estado,servicio, sqlversion, idedicion, antivirus, sistemaoperativo, sockets, cores, "
+                     + "cpu, rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,versionhyper,idmarca,modelo,procesador,servicestag,activo)"
                      + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
              consulta.setInt(1, xcaret.getIdserv());
              consulta.setString(2, xcaret.getNumero());
@@ -47,7 +47,7 @@ public class Xcaret_servicio {
              consulta.setString(9, xcaret.getEstado());
              consulta.setString(10,xcaret.getServicio()); 
              consulta.setString(11, xcaret.getSqlversion());
-             consulta.setString(12, xcaret.getEdicion());
+             consulta.setString(12, xcaret.getIdedicion());
              consulta.setString(13, xcaret.getAntivirus());
              consulta.setString(14, xcaret.getSistemaoperativo());
              consulta.setString(15, xcaret.getSockets());
@@ -61,7 +61,7 @@ public class Xcaret_servicio {
              consulta.setString(23, xcaret.getNetworkisci());
              consulta.setString(24, xcaret.getHypervisor());
              consulta.setString(25, xcaret.getVersionhyper());
-             consulta.setString(26, xcaret.getMarca());
+             consulta.setString(26, xcaret.getIdmarca());
              consulta.setString(27, xcaret.getModelo());
              consulta.setString(28, xcaret.getProcesador());
              consulta.setString(29, xcaret.getServicestag());
@@ -72,9 +72,9 @@ public class Xcaret_servicio {
              }else{
                  String query =
                  "UPDATE servidores SET numero = ?, idudn = ?, idsite=? , host = ?, nameserver = ?, tipo = ?,"
-                 + "ip = ?, estado = ?, servicio = ?, sqlversion = ?,edicion =?,antivirus=?,sistemaoperativo=?,sockets=?,"
+                 + "ip = ?, estado = ?, servicio = ?, sqlversion = ?,idedicion =?,antivirus=?,sistemaoperativo=?,sockets=?,"
                          + "cores=?,cpu=?,rammb=?,ramdinamik=?,architecture=?,diskgb=?,unidadesgb=?,networkisci=?,"
-                         + " hypervisor=?,versionhyper=?, marca = ?, modelo = ?, "
+                         + " hypervisor=?,versionhyper=?, idmarca = ?, modelo = ?, "
                          + "procesador = ?,servicestag=?,activo=? WHERE idserv =?";
                  consulta = conexion.prepareStatement(query);
                  consulta.setString(1, xcaret.getNumero());
@@ -87,7 +87,7 @@ public class Xcaret_servicio {
                  consulta.setString(8, xcaret.getEstado());
                  consulta.setString(9, xcaret.getServicio());
                  consulta.setString(10, xcaret.getSqlversion());
-                 consulta.setString(11, xcaret.getEdicion());
+                 consulta.setString(11, xcaret.getIdedicion());
                  consulta.setString(12, xcaret.getAntivirus());
                  consulta.setString(13, xcaret.getSistemaoperativo());
                  consulta.setString(14, xcaret.getSockets());
@@ -101,7 +101,7 @@ public class Xcaret_servicio {
                  consulta.setString(22, xcaret.getNetworkisci());
                  consulta.setString(23, xcaret.getHypervisor());
                  consulta.setString(24, xcaret.getVersionhyper());
-                 consulta.setString(25, xcaret.getMarca());
+                 consulta.setString(25, xcaret.getIdmarca());
                  consulta.setString(26, xcaret.getModelo());
                  consulta.setString(27, xcaret.getProcesador());
                  consulta.setString(28, xcaret.getServicestag());
@@ -136,7 +136,7 @@ public class Xcaret_servicio {
                 cl.setEstado(rs.getString(9));
                 cl.setServicio(rs.getString(10));
                 cl.setSqlversion(rs.getString(11));
-                cl.setEdicion(rs.getString(12));
+                cl.setIdedicion(rs.getString(12));
                 cl.setAntivirus(rs.getString(13));
                 cl.setSistemaoparativo(rs.getString(14));
                 cl.setSockets(rs.getString(15));
@@ -150,7 +150,7 @@ public class Xcaret_servicio {
                 cl.setNetworkisci(rs.getString(23));
                 cl.setHypervisor(rs.getString(24));
                 cl.setVersionhyper(rs.getString(25));
-                cl.setMarca(rs.getString(26));
+                cl.setIdmarca(rs.getString(26));
                 cl.setModelo(rs.getString(27));
                 cl.setProcesador(rs.getString(28));
                 cl.setServicestag(rs.getString(29));
@@ -177,7 +177,7 @@ public class Xcaret_servicio {
     String estado;
     String servicio;
     String sqlversion;
-    String edicion;
+    String idedicion;
     String antivirus;
     String sistemaoparativo;
     String sockets;
@@ -191,7 +191,7 @@ public class Xcaret_servicio {
     String networkisci;
     String hypervisor;
     String versionhyper;
-    String marca;
+    String idmarca;
     String modelo;
     String procesador;
     String servicestag;
@@ -210,7 +210,7 @@ public class Xcaret_servicio {
         this.estado = "";
         this.servicio = "";
         this.sqlversion = "";
-        this.edicion = "";
+        this.idedicion = "";
         this.antivirus = "";
         this.sistemaoparativo = "";
         this.sockets = "";
@@ -224,7 +224,7 @@ public class Xcaret_servicio {
         this.networkisci = "";
         this.hypervisor = "";
         this.versionhyper = "";
-        this.marca = "";
+        this.idmarca = "";
         this.modelo = "";
         this.procesador = "";
         this.servicestag = "";
@@ -320,12 +320,12 @@ public class Xcaret_servicio {
         this.sqlversion = sqlversion;
     }
 
-    public String getEdicion() {
-        return edicion;
+    public String getIdedicion() {
+        return idedicion;
     }
 
-    public void setEdicion(String edicion) {
-        this.edicion = edicion;
+    public void setIdedicion(String idedicion) {
+        this.idedicion = idedicion;
     }
 
     public String getAntivirus() {
@@ -432,12 +432,12 @@ public class Xcaret_servicio {
         this.versionhyper = versionhyper;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getIdmarca() {
+        return idmarca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setIdmarca(String marca) {
+        this.idmarca = marca;
     }
 
     public String getModelo() {
@@ -478,14 +478,12 @@ public class Xcaret_servicio {
  public List<Xcaret> recuperarTodas(Connection conexion) throws SQLException{
          List<Xcaret> xcaret = new ArrayList<>();
     try{
- PreparedStatement consulta = conexion.prepareStatement("select idserv,numero,udn, site,host,nameserver,tipo,ip,"
-   + "estado, servicio,sqlversion,edicion,antivirus,sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,"
-    + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
+ PreparedStatement consulta = conexion.prepareStatement("select idserv,numero,udn, site,host,nameserver,tipo,ip,estado,servicio,sqlversion,edicion,antivirus,\n" +
+"sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,\n" +
+"hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
 "from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
-" inner join site on(site.idsite=servidores.idsite) \n" +
-         "inner join marca on(marca.idmarca=servidores.idmarca)\n"+
-"where udn.idudn and site.idsite and marca.idmarca\n" +
-" order by (site) asc");
+"inner join site on(site.idsite=servidores.idsite) INNER JOIN marca on(marca.idmarca=servidores.idmarca)\n" +
+"INNER JOIN edicion ON (edicion.idedicion=servidores.idedicion)");
 ResultSet resultado = consulta.executeQuery();
 while(resultado.next()){
  xcaret.add( new Xcaret(resultado.getInt("idserv"),resultado.getString("numero"), resultado.getString("udn")

@@ -28,7 +28,7 @@ public class Xcaret {
    private String estado;
    private String servicio;
    private String sqlversion;
-   private String edicion;
+   private String idedicion;
    private String antivirus;
    private String sistemaoperativo;
    private String sockets;
@@ -42,7 +42,7 @@ public class Xcaret {
    private String networkisci;
    private String hypervisor;
    private String versionhyper;
-   private String marca;  
+   private String idmarca;  
    private String modelo;   
    private String procesador;
    private String servicestag;
@@ -62,7 +62,7 @@ public class Xcaret {
         this.estado = null;
         this.servicio = null;
         this.sqlversion = null;
-        this.edicion = null;
+        this.idedicion = null;
         this.antivirus = null;
         this.sistemaoperativo = null;
         this.sockets = null;
@@ -76,7 +76,7 @@ public class Xcaret {
         this.networkisci = null;
         this.hypervisor = null;
         this.versionhyper = null;
-        this.marca = null;
+        this.idmarca = null;
         this.modelo = null;
         this.procesador = null;
         this.servicestag = null;
@@ -84,9 +84,9 @@ public class Xcaret {
        
     }
     public Xcaret(int idserv, String numero, String idudn, String idsite, String host, String nameserver, 
-        String tipo, String ip, String estado, String servicio, String sqlversion, String edicion, String antivirus,
+        String tipo, String ip, String estado, String servicio, String sqlversion, String idedicion, String antivirus,
         String sistemaoperativo, String sockets, String cores, String cpu, String rammb, String ramdinamik, String architecture,
-        String diskgb, String unidadesgb, String networkisci, String hypervisor, String versionhyper, String marca, String modelo,
+        String diskgb, String unidadesgb, String networkisci, String hypervisor, String versionhyper, String idmarca, String modelo,
         String procesador, String servicestag, String activo){
         
         this.idserv = idserv;
@@ -100,7 +100,7 @@ public class Xcaret {
         this.estado = estado;
         this.servicio = servicio;
         this.sqlversion = sqlversion;
-        this.edicion = edicion;
+        this.idedicion = idedicion;
         this.antivirus = antivirus;
         this.sistemaoperativo = sistemaoperativo;
         this.sockets = sockets;
@@ -114,7 +114,7 @@ public class Xcaret {
         this.networkisci = networkisci;
         this.hypervisor = hypervisor;
         this.versionhyper = versionhyper;
-        this.marca = marca;
+        this.idmarca = idmarca;
         this.modelo = modelo;
         this.procesador = procesador;
         this.servicestag = servicestag;
@@ -189,11 +189,11 @@ public class Xcaret {
     public void setSqlversion(String sqlversion){
         this.sqlversion = sqlversion;
     }
-    public String getEdicion(){
-        return edicion;
+    public String getIdedicion(){
+        return idedicion;
     }
-    public void setEdicion(String edicion){
-        this.edicion = edicion;
+    public void setIdedicion(String idedicion){
+        this.idedicion = idedicion;
     }
     public String getAntivirus(){
         return antivirus;
@@ -285,11 +285,11 @@ public class Xcaret {
     public String getServicestag() {
         return servicestag;
     }
-   public String getMarca() {
-        return marca;
+   public String getIdmarca() {
+        return idmarca;
     }
-    public void setMarca(String marca) {
-            this.marca=marca;
+    public void setIdmarca(String idmarca) {
+            this.idmarca=idmarca;
         }
    public String getModelo() {
         return modelo;
@@ -322,10 +322,10 @@ public class Xcaret {
    public String toString() {
    return "Xcaret{" + "idserv=" + idserv +", numero="+ numero + ",idudn="+idudn+",idsite="+idsite+", "
    + " nameserver=" + nameserver + ", tipo=" + tipo + ", ip=" + ip + ", estado=" + estado +",servicio=" +servicio
-   +",sqlversion="+sqlversion +", edicion="+edicion+",sistemaoperativo="+sistemaoperativo
+   +",sqlversion="+sqlversion +", idedicion="+idedicion+",sistemaoperativo="+sistemaoperativo
    +",sockets="+sockets+",cores"+cores+",cpu="+cpu+",rammb="+rammb+",ramdinamik="+ramdinamik+",architecture="+architecture
    +",diskgb="+diskgb+", unidadesgb="+unidadesgb+",networkisci="+networkisci+",hypervisor="+hypervisor
-   +",versionhyper="+versionhyper+", marca=" + marca 
+   +",versionhyper="+versionhyper+", idmarca=" + idmarca 
    +", modelo=" + modelo +", procesador=" + procesador +",servicestag="+servicestag +", activo="+activo+ '}';
     }
 
