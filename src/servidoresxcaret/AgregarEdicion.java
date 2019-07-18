@@ -7,13 +7,12 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Edicion_servicio;
-import Servicios.Marca_servicio;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Edicion;
-import modelo.Marca;
 
 /**
  *
@@ -26,16 +25,17 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
     Connection conexion;
 
 
-    /**
-     * Creates new form AgregarEdicion
-     */
+    
     public AgregarEdicion() {
         initComponents();
+        jPanel1.setFocusable(true);
         this.edit = new Edicion();
     }
     private void guardar(){
-        String idedicion = edition.getText();
-        this.edit.setEdicion(idedicion);
+        String ided = edition.getText();
+        
+        this.edit.setEdicion(ided);
+        
         try{
             this.edicion_servicio.guardar(Conexion.obtener(), this.edit);
                         
@@ -67,12 +67,21 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         Registrar = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Edición"));
         setClosable(true);
         setIconifiable(true);
+        setTitle("Agregar Edición");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
 
+        edition.setText("Nombre de la edicion");
+        edition.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                editionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                editionFocusLost(evt);
+            }
+        });
         edition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editionActionPerformed(evt);
@@ -118,7 +127,7 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(43, 43, 43)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,7 +138,7 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -150,6 +159,20 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
             guardar();
         }
     }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void editionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_editionFocusGained
+       if(edition.getText().trim().equals("Nombre de la edicion")){
+           edition.setText("");
+       }
+       edition.setForeground(Color.blue);
+    }//GEN-LAST:event_editionFocusGained
+
+    private void editionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_editionFocusLost
+       if(edition.getText().trim().equals("")){
+           edition.setText("Nombre de la edicion");
+       }
+       edition.setForeground(new Color(135, 135, 100));
+    }//GEN-LAST:event_editionFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

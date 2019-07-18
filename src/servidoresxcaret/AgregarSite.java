@@ -7,6 +7,8 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Site_servicio;
+import Vista.VentanaAdmin;
+import ds.desktop.notify.DesktopNotify;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -34,17 +36,11 @@ public class AgregarSite extends javax.swing.JInternalFrame {
         initComponents();
         this.sit = new Site();
     }
-
-   
     
-     
       private void guardar(){
-        
-        //String id=ID.getText();
+      
         String sited=site.getText();
-       
-        
-        //this.producto.setId(id);
+ 
         this.sit.setSite(sited);
            
         try{
@@ -62,9 +58,9 @@ public class AgregarSite extends javax.swing.JInternalFrame {
       public AgregarSite(Site ad_p){
     initComponents();
     this.sit = ad_p;
-    //this.ID.setText(this.producto.getId());
+   
      this.site.setText(this.sit.getSite());
-//yeahhh.....................
+
    
 }
     /**
@@ -163,6 +159,9 @@ public class AgregarSite extends javax.swing.JInternalFrame {
            JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
        }else{
         guardar();
+        cargar_lista_producto();
+            DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
+            this.dispose();
         }
     }//GEN-LAST:event_RegistrarActionPerformed
 
@@ -171,7 +170,7 @@ public class AgregarSite extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_siteKeyTyped
 
     private void siteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_siteActionPerformed
 
 
@@ -181,4 +180,9 @@ public class AgregarSite extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField site;
     // End of variables declaration//GEN-END:variables
+private void cargar_lista_producto() {
+       ConsultarSite cons = new ConsultarSite();
+        VentanaAdmin.panel.add(cons);
+        cons.setVisible(true);
+        }  
 }

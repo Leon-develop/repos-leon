@@ -8,15 +8,10 @@ package servidoresxcaret;
 import Servicios.Conexion;
 import Servicios.Xcaret_servicio;
 import Vista.VentanaAdmin;
-import static Vista.VentanaAdmin.panel;
-import static Vista.VentanaInvitado.vXcestacerrado;
 import ds.desktop.notify.DesktopNotify;
+import java.awt.Color;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -279,6 +274,25 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             }
         });
 
+        Host.setText("Nombre del Host");
+        Host.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                HostFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                HostFocusLost(evt);
+            }
+        });
+
+        Nameserver.setText("Nombre del servidor");
+        Nameserver.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                NameserverFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NameserverFocusLost(evt);
+            }
+        });
         Nameserver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameserverActionPerformed(evt);
@@ -730,9 +744,11 @@ public class AgregarServers extends javax.swing.JInternalFrame {
                    
             guardar();
               
-            DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
+            
             cargar_lista_producto();
+            DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
             this.dispose();
+            
             
             
            
@@ -786,6 +802,36 @@ ModalMarca dialog = new ModalMarca(new javax.swing.JFrame(), true);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true); 
     }//GEN-LAST:event_Buscar2ActionPerformed
+
+    private void NameserverFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameserverFocusGained
+        if(Nameserver.getText().trim().equals("Nombre del servidor")){
+           Nameserver.setText("");
+       }
+       Nameserver.setForeground(Color.blue);
+    }//GEN-LAST:event_NameserverFocusGained
+
+    private void NameserverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameserverFocusLost
+       if(Nameserver.getText().trim().equals("") || Nameserver.getText().trim().toLowerCase().equals("nombre del servidor")){
+           Nameserver.setText("Nombre del servidor");
+            Nameserver.setForeground(Color.blue);
+       }
+      
+    }//GEN-LAST:event_NameserverFocusLost
+
+    private void HostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HostFocusGained
+     if(Host.getText().trim().equals("Nombre del Host")){
+           Host.setText("");
+       }
+       Host.setForeground(Color.blue);
+    }//GEN-LAST:event_HostFocusGained
+
+    private void HostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_HostFocusLost
+      if(Host.getText().trim().equals("")|| Host.getText().trim().toLowerCase().equals("nombre del host")){
+           Host.setText("Nombre del Host");
+           Host.setForeground(Color.blue);
+       }
+        
+    }//GEN-LAST:event_HostFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -861,9 +907,6 @@ Conexion cc=new Conexion();
  
  
     private void cargar_lista_producto() {
-     
-       //JOptionPane.showMessageDialog(this, "La ventana Consultar Datos ya esta abierta");
-      
        ConsultarServers cons = new ConsultarServers();
         VentanaAdmin.panel.add(cons);
         cons.setVisible(true);

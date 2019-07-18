@@ -415,9 +415,21 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="Host">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre del Host"/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="HostFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="HostFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="Nameserver">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre del servidor"/>
+          </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NameserverFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="NameserverFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NameserverActionPerformed"/>
           </Events>
         </Component>

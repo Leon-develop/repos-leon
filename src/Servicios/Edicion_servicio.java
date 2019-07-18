@@ -27,11 +27,12 @@ public class Edicion_servicio {
         try{
         PreparedStatement consulta;
         if(edicion.getIdedicion()== 0){
-            consulta= conexion.prepareStatement("INSERT INTO edicion (idedicion,edicion) VALUES (?, ?)");
-            
+            consulta= conexion.prepareStatement("INSERT INTO edicion (idedicion , edicion) VALUES (?,?)");
+            consulta.setInt(1, edicion.getIdedicion());
+            consulta.setString(2, edicion.getEdicion());
         }else{
             String query=
-                    "UPDATE edicion SET edicion = ? WHERE idedicion = ?";
+                    "UPDATE edicion SET edicion = ? WHERE idedicion=?";
             consulta = conexion.prepareStatement(query);
             consulta.setString(1, edicion.getEdicion());
             consulta.setInt(2, edicion.getIdedicion());
@@ -44,7 +45,7 @@ public class Edicion_servicio {
     public List<Edicion> recuperarTodas(Connection conexion) throws SQLException{
          List<Edicion> edicion= new ArrayList<>();
     try{
-         PreparedStatement consulta = conexion.prepareStatement("select idedicion,edicion from edicion");
+         PreparedStatement consulta = conexion.prepareStatement("select idedicion, edicion from edicion");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
              edicion.add( new Edicion(resultado.getInt("idedicion"),resultado.getString("edicion")));
@@ -81,6 +82,7 @@ public class Edicion_servicio {
     
     private int idedicion;
     private String edicion;
+    
     public Edicion_servicio(){
         this.idedicion = 0;
         this.edicion = "";

@@ -12,7 +12,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import servidoresxcaret.AgregarServers;
 import servidoresxcaret.ConsultarServers;
-//import servidoresxcaret.XcaretConsultar;
+
 
 /**
  *
@@ -218,14 +218,14 @@ return cerrado;
     }//GEN-LAST:event_AgregarServersActionPerformed
 
     private void ConsservActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsservActionPerformed
-      if(vXcestacerrado(cons)){ 
+      /*if(vXcestacerrado(cons)){ 
       cons = new ConsultarServers();
       panel.add(cons);
       cons.setVisible(true);
        
        }else{
        JOptionPane.showMessageDialog(this, "La ventana Consultar Datos ya esta abierta");
-       }
+       }*/
     }//GEN-LAST:event_ConsservActionPerformed
 
     private void probandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_probandoActionPerformed

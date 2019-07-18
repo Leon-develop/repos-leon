@@ -68,13 +68,14 @@ public class Conexion {
        this.numPage = ( numPage<=1 )? 1 : numPage;        
 
        //Consulta SQL para obtener todos los registros
-       String q  = "select idserv,numero,udn, site,host,nameserver,tipo,ip,"
-   + "estado, servicio,sqlversion,edicion,antivirus,sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,"
-    + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
-"from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
-" inner join site on(site.idsite=servidores.idsite) \n" +
-"where udn.idudn and site.idsite\n" +
-" order by (site) asc"  ;
+       String q  = "select idserv,numero,udn,site,host,nameserver,tipo,\n" +
+"ip,estado,servicio,sqlversion,edicion,antivirus,sistemaoperativo,\n" +
+"sockets,cores,cpu,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,\n" +
+"versionhyper,marca,modelo,procesador,servicestag,activo\n" +
+"from servidores  inner join udn  on udn.idudn=servidores.idudn\n" +
+"inner join site  on site.idsite=servidores.idsite  inner join edicion on edicion.idedicion=servidores.idedicion\n" +
+"inner join marca on marca.idmarca=servidores.idmarca\n" +
+"order by (site) asc" ;
 
        Statement st;
        ResultSet rs;

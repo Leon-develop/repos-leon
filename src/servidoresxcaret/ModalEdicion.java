@@ -34,7 +34,7 @@ public class ModalEdicion extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
          
-        n.addColumn("ID");
+        n.addColumn("Id");
         n.addColumn("Edicion");
         this.modal.setModel(n);
         this.cargar_lista_producto();

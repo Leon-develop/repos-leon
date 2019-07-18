@@ -7,17 +7,13 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Udn_servicio;
-import Servicios.Xcaret_servicio;
+import Vista.VentanaAdmin;
+import ds.desktop.notify.DesktopNotify;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import modelo.Udns;
-import modelo.Xcaret;
 
 /**
  *
@@ -44,7 +40,7 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
      
       private void guardar(){
         
-        //String id=ID.getText();
+        
          String udn=udnss.getText();
        
         
@@ -66,16 +62,16 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
       public AgregarUdn(Udns ad_p){
     initComponents();
     this.udn = ad_p;
-    //this.ID.setText(this.producto.getId());
-     this.udnss.setText(this.udn.getUdn());//cargar la vida con locura.....................
+    
+     this.udnss.setText(this.udn.getUdn());
    
 }
  /**
-  * si tu vida
-  * no te compila
-  * cambiale 
-  * tu codigo
-  * 
+  * pensé en llevarte a la luna 
+  * para que no tengas otra opción
+  * más que enamorarte de mi,
+  * pero despues pienso que puedes enamorarte de un 
+  * extraterrestre y se me pasa :(
   */
 
     @SuppressWarnings("unchecked")
@@ -163,6 +159,10 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         this.guardar();
+       cargar_lista_producto();
+            DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
+            this.dispose();
+        
     }//GEN-LAST:event_RegistrarActionPerformed
 
 
@@ -172,4 +172,9 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField udnss;
     // End of variables declaration//GEN-END:variables
+private void cargar_lista_producto() {
+       ConsultarUdn cons = new ConsultarUdn();
+        VentanaAdmin.panel.add(cons);
+        cons.setVisible(true);
+        }  
 }

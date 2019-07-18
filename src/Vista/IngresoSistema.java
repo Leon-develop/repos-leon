@@ -15,7 +15,7 @@ import ds.desktop.notify.DesktopNotify;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -49,7 +49,10 @@ public class IngresoSistema extends javax.swing.JFrame {
                      VentanaAdmin ingreso = new VentanaAdmin();
                     ingreso.setVisible(true);
                     ingreso.pack();
+                    ingreso.setExtendedState(MAXIMIZED_BOTH);
                      VentanaAdmin.lblusu.setText(usuario);
+                     this.dispose();
+                     
         
                 
             }
