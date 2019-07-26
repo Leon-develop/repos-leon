@@ -83,6 +83,10 @@ return cerrado;
         Consserv = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         probando = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventory-Servers-Xcaret");
@@ -160,7 +164,7 @@ return cerrado;
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("prueba ");
+        jMenu4.setText("UDN");
 
         probando.setText("newjinternalframe");
         probando.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +175,18 @@ return cerrado;
         jMenu4.add(probando);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Site");
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Marcas ");
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Edición");
+        jMenuBar1.add(jMenu7);
+
+        jMenu8.setText("Reportes");
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -276,6 +292,10 @@ return cerrado;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JLabel lblconectado;
     private javax.swing.JMenuItem logout;

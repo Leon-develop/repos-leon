@@ -13,11 +13,8 @@ import ds.desktop.notify.DesktopNotify;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import modelo.Site;
-import modelo.Udns;
 
 /**
  *
@@ -34,6 +31,7 @@ public class AgregarSite extends javax.swing.JInternalFrame {
     public AgregarSite() {
         getContentPane().setBackground(java.awt.Color.gray);
         initComponents();
+         this.setLocation(450, 220);
         this.sit = new Site();
     }
     

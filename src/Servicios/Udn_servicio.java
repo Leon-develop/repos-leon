@@ -134,7 +134,7 @@ public class Udn_servicio {
      }catch (SQLException ex){
              try {
                  JOptionPane.showMessageDialog(null, "El registro no se puede eliminar\n "
-                         + "porque existen otras dependencias " + ex.getMessage());
+                         + "porque existen otras dependencias Elimínelos primero e intentelo de nuevo ");
                  throw new SQLException (ex);
              } catch (SQLException ex1) {
                  

@@ -7,6 +7,8 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Marca_servicio;
+import Vista.VentanaAdmin;
+import ds.desktop.notify.DesktopNotify;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,6 +29,7 @@ public class AgregarMarca extends javax.swing.JInternalFrame {
     
     public AgregarMarca() {
         initComponents();
+         this.setLocation(450, 220);
         this.marc = new Marca();
     }
 private void guardar(){
@@ -146,6 +149,9 @@ private void guardar(){
             JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
         }else{
             guardar();
+            cargar_lista_marca();
+            DesktopNotify.showDesktopMessage("Información", " Datos actualizados exitosamente", DesktopNotify.SUCCESS, 4000L);
+            this.dispose();
         }
     }//GEN-LAST:event_RegistrarActionPerformed
 
@@ -156,4 +162,10 @@ private void guardar(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField marca;
     // End of variables declaration//GEN-END:variables
+
+    private void cargar_lista_marca() {
+       ConsultarMarca consm = new ConsultarMarca();
+        VentanaAdmin.panel.add(consm);
+        consm.setVisible(true);
+    }
 }

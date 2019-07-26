@@ -29,6 +29,7 @@ public class ConsultarUdn extends javax.swing.JInternalFrame {
      */
     public ConsultarUdn() {
         initComponents();
+         this.setLocation(450, 220);
          n.addColumn("Idudn");
         n.addColumn("Udn");
         this.m.setModel(n);

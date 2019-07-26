@@ -30,6 +30,7 @@ public class ConsultarEdicion extends javax.swing.JInternalFrame {
      */
     public ConsultarEdicion() {
         initComponents();
+         this.setLocation(450, 220);
         n.addColumn("ID");
         n.addColumn("Edición");
         this.si.setModel(n);

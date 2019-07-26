@@ -11,8 +11,10 @@
 package Vista;
 
 import Servicios.Conexion;
+import ds.desktop.notify.DesktopNotify;
 //import claseConectar.conectar;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,12 +29,13 @@ DefaultTableModel modelo;
     /** Creates new form usuarios */
     public Usuarios() {
         initComponents();
+         this.setLocation(450, 220);
         mostrarusuarios();
-        Generarnumeracion();
+       // Generarnumeracion();
        
         
     }
-    void Generarnumeracion()
+   /* void Generarnumeracion()
     {
      String SQL="select max(idusuario) from usuario";
        // String SQL="select count(*) from factura";
@@ -63,7 +66,7 @@ DefaultTableModel modelo;
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
          
-    }
+    }*/
    void mostrarusuarios(){
    String [] titulos= {"id","USUARIO","TIPO USUARIO"};
    modelo=new  DefaultTableModel(null,titulos);   
@@ -97,14 +100,12 @@ DefaultTableModel modelo;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
         txtnick = new javax.swing.JTextField();
-        cbotipo = new javax.swing.JComboBox();
         txtpass = new javax.swing.JPasswordField();
+        cbotipo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbusuario = new javax.swing.JTable();
         btneliminar = new javax.swing.JButton();
@@ -120,9 +121,6 @@ DefaultTableModel modelo;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Usuario"));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel1.setText("Id:");
-
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("Usuario");
 
@@ -132,8 +130,7 @@ DefaultTableModel modelo;
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("Tipo Usuario:");
 
-        cbotipo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cbotipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Administrador", "Invitado", " " }));
+        cbotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Invitado" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,26 +139,20 @@ DefaultTableModel modelo;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtid)
-                    .addComponent(txtnick)
+                    .addComponent(txtnick, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(txtpass)
-                    .addComponent(cbotipo, 0, 140, Short.MAX_VALUE))
+                    .addComponent(cbotipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtnick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +164,7 @@ DefaultTableModel modelo;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cbotipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tbusuario.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,32 +238,39 @@ DefaultTableModel modelo;
                         .addComponent(btnaceptar)
                         .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btneliminar))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-String ins="INSERT INTO usuario (usuario, password,tipousuario) VALUES(?,?,?)";
+
+    String ins="INSERT INTO usuario (usuario, password,tipousuario) VALUES(?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(ins);
             pst.setString(1, txtnick.getText());
             pst.setString(2,new String(txtpass.getPassword()));
             pst.setString(3, cbotipo.getSelectedItem().toString());
+            
             int n= pst.executeUpdate();
-            if(n>0)
+           
+            if (n>0)  
+           
             {
-                JOptionPane.showMessageDialog(this, "Se guardaron los datos");
+   DesktopNotify.showDesktopMessage("Información","Los datos han sido guardados", DesktopNotify.SUCCESS, 4000L);             
                 mostrarusuarios();
                 txtnick.setText(null);
                 txtpass.setText(null);
                 cbotipo.setSelectedIndex(0);
-                Generarnumeracion();
-            }
-            else
-            {
-                 JOptionPane.showMessageDialog(this, "Error");
+                
+               // Generarnumeracion();
+                
+            }else{
+      
+      DesktopNotify.showDesktopMessage("Error","Debe seleccionar un tipo de usuario", DesktopNotify.ERROR, 4000L);
+         
+                
             }
             
             
@@ -327,7 +325,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 pst = cn.prepareStatement(eli);
                   int m=pst.executeUpdate();
                 if(m>0){
-                    JOptionPane.showMessageDialog(this, "Se eliminó un regisro");
+     DesktopNotify.showDesktopMessage("Información","Se eliminó un registro", DesktopNotify.SUCCESS, 4000L);
                      mostrarusuarios();
                      txtcontra.setText(null);
                     
@@ -350,8 +348,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btnaceptar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnregistrar;
-    private javax.swing.JComboBox cbotipo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbotipo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -359,7 +356,6 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbusuario;
     private javax.swing.JPasswordField txtcontra;
-    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnick;
     private javax.swing.JPasswordField txtpass;
     // End of variables declaration//GEN-END:variables

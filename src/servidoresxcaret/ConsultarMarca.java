@@ -29,12 +29,13 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
      */
     public ConsultarMarca() {
         initComponents();
+         this.setLocation(450, 220);
         n.addColumn("ID");
         n.addColumn("Marca");
         this.si.setModel(n);
-        this.cargar_lista_site();
+        this.cargar_lista_marca();
     }
-private void cargar_lista_site(){
+private void cargar_lista_marca(){
      try{
             this.marc= this.marca_servicio.recuperarTodas(Conexion.obtener());
             /*DefaultTableModel dtm= (DefaultTableModel) tabla.getModel();*/
@@ -154,7 +155,7 @@ private void cargar_lista_site(){
             int decision=JOptionPane.showConfirmDialog(this, "Estas Seguro de eliminar este registro?", "Advertencia",JOptionPane.YES_OPTION);
             if(decision==0){
                 this.marca_servicio.eliminar(Conexion.obtener(),this.marc.get(fila_seleccionada));
-                this.cargar_lista_site();
+                this.cargar_lista_marca();
             }
         }else{
             JOptionPane.showMessageDialog(this,"Por favor seleccione una fila");

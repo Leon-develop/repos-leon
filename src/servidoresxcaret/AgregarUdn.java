@@ -32,7 +32,7 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
      public AgregarUdn() {
         this.udn = new Udns();
         initComponents();
-        
+         this.setLocation(450, 220);
       
         
     }

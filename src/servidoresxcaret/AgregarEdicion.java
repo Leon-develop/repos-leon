@@ -7,6 +7,8 @@ package servidoresxcaret;
 
 import Servicios.Conexion;
 import Servicios.Edicion_servicio;
+import Vista.VentanaAdmin;
+import ds.desktop.notify.DesktopNotify;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,6 +30,7 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
     
     public AgregarEdicion() {
         initComponents();
+        this.setLocation(450, 220);
         jPanel1.setFocusable(true);
         this.edit = new Edicion();
     }
@@ -96,9 +99,16 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Edicion");
 
-        Registrar.setBackground(new java.awt.Color(255, 255, 255));
         Registrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Registrar.setText("Registrar");
+        Registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegistrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegistrarMouseExited(evt);
+            }
+        });
         Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarActionPerformed(evt);
@@ -157,6 +167,9 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
         }else{
             guardar();
+            cargar_lista_edicion();
+            DesktopNotify.showDesktopMessage("INFORMACIÓN", "Datos guardados con exito", DesktopNotify.SUCCESS,5000L);
+            this.dispose();
         }
     }//GEN-LAST:event_RegistrarActionPerformed
 
@@ -174,6 +187,14 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
        edition.setForeground(new Color(135, 135, 100));
     }//GEN-LAST:event_editionFocusLost
 
+    private void RegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseEntered
+        Registrar.setBackground(Color.green);
+    }//GEN-LAST:event_RegistrarMouseEntered
+
+    private void RegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseExited
+        Registrar.setBackground(new Color(204,204,255));
+    }//GEN-LAST:event_RegistrarMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Registrar;
@@ -181,4 +202,10 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargar_lista_edicion() {
+     ConsultarEdicion consE = new ConsultarEdicion();
+        VentanaAdmin.panel.add(consE);
+        consE.setVisible(true);
+    }
 }

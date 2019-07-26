@@ -26,6 +26,7 @@ public class ConsultarSite extends javax.swing.JInternalFrame {
     public ConsultarSite() {
         getContentPane().setBackground(java.awt.Color.gray);
         initComponents();
+         this.setLocation(450, 220);
         n.addColumn("Num.");
         n.addColumn("SITE");
         this.si.setModel(n);

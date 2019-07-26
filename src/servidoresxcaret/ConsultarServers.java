@@ -9,21 +9,15 @@ import Servicios.Xcaret_servicio;
 import Vista.VentanaAdmin;
 import static Vista.VentanaAdmin.estacerrado;
 import static Vista.VentanaAdmin.panel;
-import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
-import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -51,6 +45,9 @@ public class ConsultarServers extends javax.swing.JInternalFrame {
 AgregarServers masc;
     public ConsultarServers() {
         initComponents();
+        m.setDefaultRenderer(Object.class, new MyRenderer());
+        this.setLocation(120, 00);
+        
          n.addColumn("No");
         n.addColumn("Udn");
         n.addColumn("Site");
@@ -88,6 +85,33 @@ AgregarServers masc;
         this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
      
     }
+   /* private boolean Validar(int fila, int columna) {
+
+String valor;
+
+if(m.getValueAt(fila,columna)==null)
+
+{
+
+System.out.println("Error El valor es nulo");
+
+return false;
+
+}
+
+else
+
+{
+
+valor=(String)m.getValueAt(fila,columna);
+
+System.out.println("El valor no es nulo");
+
+return true;
+
+}
+
+}*/
 AgregarServers abrirventana = new AgregarServers();
  private void cargar_lista_producto(){
         try{
@@ -331,35 +355,32 @@ AgregarServers abrirventana = new AgregarServers();
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 97, Short.MAX_VALUE)
+                        .addGap(0, 70, Short.MAX_VALUE)
                         .addComponent(pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(paginas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                 .addComponent(anterior))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(23, 23, 23)
+                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(txtContar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17)
-                                .addComponent(siguente))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(siguente)
                                 .addGap(150, 150, 150)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addGap(37, 37, 37)
+                                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
                                 .addComponent(NuevoCoonsul, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(83, 83, 83))))
         );
@@ -372,7 +393,7 @@ AgregarServers abrirventana = new AgregarServers();
                     .addComponent(txtFiltro)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,11 +405,11 @@ AgregarServers abrirventana = new AgregarServers();
                     .addComponent(paginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(NuevoCoonsul, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NuevoCoonsul, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -405,13 +426,46 @@ AgregarServers abrirventana = new AgregarServers();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
 
-    }//GEN-LAST:event_comboFiltroActionPerformed
+        p = (Integer) paginas.getValue();
+
+        DefaultTableModel datos = new DefaultTableModel(  conexion.getPagina( conexion.getNumPage()-1 ,p ), conexion.ColumNames() );
+        this.m.setModel( datos );
+        this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
+    }//GEN-LAST:event_anteriorActionPerformed
+
+    private void siguenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguenteActionPerformed
+     
+        p = (Integer) paginas.getValue();
+        DefaultTableModel datos = new DefaultTableModel(  conexion.getPagina( conexion.getNumPage()+1 , p ), conexion.ColumNames() );
+        this.m.setModel( datos );
+        this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
+         
+    }//GEN-LAST:event_siguenteActionPerformed
+
+    private void pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfActionPerformed
+        Conexion p=new Conexion();
+        Connection c=p.obtener();
+        try {
+            String ruta=System.getProperty("user.dir")+"/src/reportes/reportes.jasper";
+            JasperReport jp=(JasperReport)JRLoader.loadObjectFromFile(ruta);
+            JasperPrint print=JasperFillManager.fillReport(jp, null,c);
+            JasperViewer view=new JasperViewer(print,false);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(ConsultarServers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_pdfActionPerformed
 
     private void comboFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboFiltroKeyTyped
 
     }//GEN-LAST:event_comboFiltroKeyTyped
+
+    private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
+
+    }//GEN-LAST:event_comboFiltroActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
         txtFiltro.addKeyListener(new KeyAdapter() {
@@ -429,44 +483,6 @@ AgregarServers abrirventana = new AgregarServers();
         m.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtFiltroKeyTyped
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int fila_seleccionada =m.getSelectedRow();
-        if(fila_seleccionada>=0){
-            int decision=JOptionPane.showConfirmDialog(this, "Estas Seguro de eliminar este registro?", "Advertencia",JOptionPane.YES_OPTION);
-            if(decision==0){
-                this.xcaret_servicio.eliminar(Conexion.obtener(),this.xcaret.get(fila_seleccionada));
-                
-                this.cargar_lista_producto();
-            }
-        }else{
-            JOptionPane.showMessageDialog(this,"Por favor seleccione una fila");
-        }
-
-    }//GEN-LAST:event_EliminarActionPerformed
-
-    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-        // TODO add your handling code here:
-        int fila_seleccionada = m.getSelectedRow();
-        if(fila_seleccionada >=0){
-          this.dispose();
-          AgregarServers xa=new AgregarServers(this.xcaret.get(fila_seleccionada));
-            
-           xa.setVisible(true);
-            VentanaAdmin.panel.add(xa);
-            this.cargar_lista_producto();
-            
-            
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Selecciona un registro");
-
-        }
-    }//GEN-LAST:event_EditarActionPerformed
-
-    private void NuevoCoonsulComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_NuevoCoonsulComponentAdded
-
-    }//GEN-LAST:event_NuevoCoonsulComponentAdded
-
     private void NuevoCoonsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoCoonsulActionPerformed
         if(estacerrado(masc)){
             masc= new AgregarServers();
@@ -477,25 +493,43 @@ AgregarServers abrirventana = new AgregarServers();
             JOptionPane.showMessageDialog(null, "La ventana Registrar Datos ya esta abierta");
 
         }
-
     }//GEN-LAST:event_NuevoCoonsulActionPerformed
 
-    private void pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfActionPerformed
-       Conexion p=new Conexion();
-       Connection c=p.obtener();
-          try {
-            String ruta=System.getProperty("user.dir")+"/src/reportes/reportes.jasper";
-            JasperReport jp=(JasperReport)JRLoader.loadObjectFromFile(ruta);
-            JasperPrint print=JasperFillManager.fillReport(jp, null,c);
-            JasperViewer view=new JasperViewer(print,false);
-            view.setVisible(true);
-        } catch (JRException ex) {
-            Logger.getLogger(ConsultarServers.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    
+    private void NuevoCoonsulComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_NuevoCoonsulComponentAdded
 
-    }//GEN-LAST:event_pdfActionPerformed
+    }//GEN-LAST:event_NuevoCoonsulComponentAdded
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        int fila_seleccionada = m.getSelectedRow();
+        if(fila_seleccionada >=0){
+            this.dispose();
+            AgregarServers xa=new AgregarServers(this.xcaret.get(fila_seleccionada));
+
+            xa.setVisible(true);
+            VentanaAdmin.panel.add(xa);
+            this.cargar_lista_producto();
+             m.setDefaultRenderer(Object.class, new MyRenderer());
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecciona un registro");
+
+        }
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int fila_seleccionada =m.getSelectedRow();
+        if(fila_seleccionada>=0){
+            int decision=JOptionPane.showConfirmDialog(this, "Estas Seguro de eliminar este registro?", "Advertencia",JOptionPane.YES_OPTION);
+            if(decision==0){
+                this.xcaret_servicio.eliminar(Conexion.obtener(),this.xcaret.get(fila_seleccionada));
+
+                this.cargar_lista_producto();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Por favor seleccione una fila");
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
   private Conexion conexion =new Conexion();
   int p;
    SpinnerNumberModel spinner= new SpinnerNumberModel(
@@ -503,25 +537,7 @@ AgregarServers abrirventana = new AgregarServers();
   new Integer(0),
   new Integer(100),
   new Integer(1)
-            
-);
-    private void siguenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguenteActionPerformed
-
-        p = (Integer) paginas.getValue();
-        DefaultTableModel datos = new DefaultTableModel(  conexion.getPagina( conexion.getNumPage()+1 , p ), conexion.ColumNames() );
-        this.m.setModel( datos );
-        this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
-    }//GEN-LAST:event_siguenteActionPerformed
-
-    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
-
-        p = (Integer) paginas.getValue();
-
-        DefaultTableModel datos = new DefaultTableModel(  conexion.getPagina( conexion.getNumPage()-1 ,p ), conexion.ColumNames() );
-        this.m.setModel( datos );
-        this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
-    }//GEN-LAST:event_anteriorActionPerformed
-
+            );
      
     
     
