@@ -35,7 +35,7 @@ public class Xcaret_servicio {
              consulta=conexion.prepareStatement("INSERT INTO servidores (idserv,numero,idudn,idsite,host,"
              + "nameserver,tipo,ip,estado,servicio, sqlversion, idedicion, antivirus, sistemaoperativo, sockets, cores, "
                      + "cpu, rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,versionhyper,idmarca,modelo,procesador,servicestag,activo)"
-                     + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     + " VALUES (?, ?, (select idudn from udn where udn=?), (select idsite from site where site=?), ?, ?, ?, ?, ?, ?, ?, (select idedicion from edicion where edicion=?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(select idmarca from marca where marca=?), ?, ?, ?, ?)");
              consulta.setInt(1, xcaret.getIdserv());
              consulta.setString(2, xcaret.getNumero());
              consulta.setString(3, xcaret.getIdudn());
@@ -71,10 +71,10 @@ public class Xcaret_servicio {
              
              }else{
                  String query =
-                 "UPDATE servidores SET numero = ?, idudn = ?, idsite=? , host = ?, nameserver = ?, tipo = ?,"
-                 + "ip = ?, estado = ?, servicio = ?, sqlversion = ?,idedicion =?,antivirus=?,sistemaoperativo=?,sockets=?,"
+                 "UPDATE servidores SET numero = ?, idudn = (select idudn from udn where udn=?), idsite =(select idsite from site where site=?), host = ?, nameserver = ?, tipo = ?,"
+                 + "ip = ?, estado = ?, servicio = ?, sqlversion = ?,idedicion =(select idedicion from edicion where edicion=?),antivirus=?,sistemaoperativo=?,sockets=?,"
                          + "cores=?,cpu=?,rammb=?,ramdinamik=?,architecture=?,diskgb=?,unidadesgb=?,networkisci=?,"
-                         + " hypervisor=?,versionhyper=?, idmarca = ?, modelo = ?, "
+                         + " hypervisor=?,versionhyper=?, idmarca = (select idmarca from marca where marca=?), modelo = ?, "
                          + "procesador = ?,servicestag=?,activo=? WHERE idserv =?";
                  consulta = conexion.prepareStatement(query);
                  consulta.setString(1, xcaret.getNumero());
@@ -478,12 +478,14 @@ public class Xcaret_servicio {
  public List<Xcaret> recuperarTodas(Connection conexion) throws SQLException{
          List<Xcaret> xcaret = new ArrayList<>();
     try{
- PreparedStatement consulta = conexion.prepareStatement("select idserv,numero,udn, site,host,nameserver,tipo,ip,estado,servicio,sqlversion,edicion,antivirus,\n" +
-"sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,\n" +
-"hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
-"from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
-"inner join site on(site.idsite=servidores.idsite) INNER JOIN marca on(marca.idmarca=servidores.idmarca)\n" +
-"INNER JOIN edicion ON (edicion.idedicion=servidores.idedicion)");
+ PreparedStatement consulta = conexion.prepareStatement("select idserv,numero,udn,site,host,nameserver,tipo,\n" +
+"ip,estado,servicio,sqlversion,edicion,antivirus,sistemaoperativo,\n" +
+"sockets,cores,cpu,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,\n" +
+"versionhyper,marca,modelo,procesador,servicestag,activo\n" +
+"from servidores  inner join udn  on udn.idudn=servidores.idudn\n" +
+"inner join site  on site.idsite=servidores.idsite  inner join edicion on edicion.idedicion=servidores.idedicion\n" +
+"inner join marca on marca.idmarca=servidores.idmarca\n" +
+"order by (idserv) asc");
 ResultSet resultado = consulta.executeQuery();
 while(resultado.next()){
  xcaret.add( new Xcaret(resultado.getInt("idserv"),resultado.getString("numero"), resultado.getString("udn")

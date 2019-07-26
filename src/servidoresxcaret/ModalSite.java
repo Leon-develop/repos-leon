@@ -10,10 +10,16 @@ import Servicios.Conexion;
 import Servicios.Site_servicio;
 import Servicios.Udn_servicio;
 import Servicios.Xcaret_servicio;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 import modelo.Site;
 import modelo.Udns;
 import modelo.Xcaret;
@@ -31,16 +37,21 @@ DefaultTableModel n=new DefaultTableModel();
  public static String idd;
     private List<Site> udns;
        static int Comprueba;
+       private TableRowSorter trsFiltro;
+    
 
     /** Creates new form ModalUdn */
     public ModalSite(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+         JTableHeader header=  modall.getTableHeader();
+           header.setBackground(Color.green);
+           header.setForeground(Color.green);
+            
           n.addColumn("Id");
            n.addColumn("Site");
        
-        this.modal.setModel(n);
+        this.modall.setModel(n);
         this.cargar_lista_producto();
     }
 
@@ -92,8 +103,9 @@ DefaultTableModel n=new DefaultTableModel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        modal = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        modall = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,9 +127,9 @@ DefaultTableModel n=new DefaultTableModel();
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Elegir Site", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        modal.setModel(new javax.swing.table.DefaultTableModel(
+        modall.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -125,23 +137,24 @@ DefaultTableModel n=new DefaultTableModel();
 
             }
         ));
-        modal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        modal.addMouseListener(new java.awt.event.MouseAdapter() {
+        modall.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        modall.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modalMouseClicked(evt);
+                modallMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                modalMousePressed(evt);
+                modallMousePressed(evt);
             }
         });
-        jScrollPane2.setViewportView(modal);
-        modal.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jScrollPane2.setViewportView(modall);
+        modall.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Seleccionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLabel1.setText("Buscar Marca");
+
+        txtFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
             }
         });
 
@@ -150,101 +163,79 @@ DefaultTableModel n=new DefaultTableModel();
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 86, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMouseClicked
+    private void modallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modallMouseClicked
     
-    }//GEN-LAST:event_modalMouseClicked
+    }//GEN-LAST:event_modallMouseClicked
 
-    private void modalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMousePressed
+    private void modallMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modallMousePressed
            if (evt.getClickCount() == 2) {
                
-            if (Comprueba == 1) {
-                
-                Integer idsite = (Integer) modal.getValueAt(modal.getSelectedRow(), 0);
-
-                   ids.setText(Integer.toString(idsite));
-           
-            } 
-           
-                  
-            if (Comprueba == 2) {
-                
-                Integer idsite = (Integer) modal.getValueAt(modal.getSelectedRow(), 0);
-
-                   ids.setText(Integer.toString(idsite));
-                
-           
-            } 
-                
-                 
-            
-            
-            this.dispose();
+          this.selec();
 
         }
-    }//GEN-LAST:event_modalMousePressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-  int fila_seleccionada = modal.getSelectedRow();
+    }//GEN-LAST:event_modallMousePressed
+public void selec(){
+    int fila_seleccionada = modall.getSelectedRow();
        if(fila_seleccionada >=0){
           // int decision = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
            //if(decision == 0){
-           int i=0;
+           
            
          
-        int x= udns.get(fila_seleccionada).getIdsite();
-        idd=Integer.toString(x);
+        String x= udns.get(fila_seleccionada).getSite();
+        idd=(x);
        
 
 this.setVisible(false);
 this.dispose();
  }else{
            
-           JOptionPane.showMessageDialog(null, "Por favor seleccione un registro"); 
 
    
            //   NewJFrame s=new NewJFrame();
              //  s.setVisible(true);
            }
+}
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -257,6 +248,26 @@ this.dispose();
         
         
     }//GEN-LAST:event_formWindowClosed
+String filtro;
+  public void filtro() {
+trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
+
+}
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        txtFiltro.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText()).toUpperCase();
+                txtFiltro.setText(cadena);
+                repaint();
+                filtro();
+            }
+
+        });
+        trsFiltro = new TableRowSorter(modall.getModel());
+        modall.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -304,11 +315,12 @@ this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable modal;
+    public javax.swing.JTable modall;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 
 }

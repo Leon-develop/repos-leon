@@ -44,8 +44,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
    public void guardar(){
         
             String numero = no.getText();
-            Object idudns=udnnn.getText();
-            Object idsites= ids.getText();
+            String idudns=udnnn.getText();
+            String idsites= ids.getText();
             String host=Host.getText();
             String nameserver=Nameserver.getText();
             String tipos=tipo.getSelectedItem().toString();
@@ -53,7 +53,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String estado=idestado.getSelectedItem().toString();
             String servicio = serv.getText();
             String sqlversion = sql.getText();
-            Object idedicion = ed.getText();
+            String idedicion = ed.getText();
             String antivirus = ant.getText();
             String sistemaoperativo = so.getText();
             String sockets = soc.getText();
@@ -67,7 +67,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             String networkisci = net.getText();
             String hypervisor = hy.getText();
             String versionhyper = vh.getText();
-            Object idmarca=idmarc.getText();
+            String idmarca=idmarc.getText();
             String modelo=mode.getText();
             String procesador=process.getText();
             String servicestag = sertag.getText();
@@ -81,8 +81,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             
             //this.producto.setId(id);
             this.xcaret.setNumero(numero);
-            this.xcaret.setIdudn((String) idudns);
-            this.xcaret.setIdsite((String) idsites);
+            this.xcaret.setIdudn( idudns);
+            this.xcaret.setIdsite( idsites);
             this.xcaret.setHost(host);
             this.xcaret.setNameserver(nameserver);
             this.xcaret.setTipo(tipos);
@@ -90,7 +90,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             this.xcaret.setEstado(estado);
             this.xcaret.setServicio(servicio);
             this.xcaret.setSqlversion(sqlversion);
-            this.xcaret.setIdedicion((String) idedicion);
+            this.xcaret.setIdedicion(idedicion);
             this.xcaret.setAntivirus(antivirus);
             this.xcaret.setSistemaoperativo(sistemaoperativo);
             this.xcaret.setSockets(sockets);
@@ -104,7 +104,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             this.xcaret.setNetworkisci(networkisci);
             this.xcaret.setHypervisor(hypervisor);
             this.xcaret.setVersionhyper(versionhyper);
-            this.xcaret.setIdmarca((String) idmarca);
+            this.xcaret.setIdmarca(idmarca);
             this.xcaret.setModelo(modelo);
             this.xcaret.setProcesador(procesador);
             this.xcaret.setServicestag(servicestag);
@@ -126,6 +126,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     public AgregarServers(Xcaret ad_p){ //quitar el throws si no sirve 
     initComponents();
     this.xcaret = ad_p;
+     this.udnnn.setText(this.xcaret.getIdudn());
+       this.ids.setText(this.xcaret.getIdsite());
     this.no.setText(this.xcaret.getNumero());
     this.Host.setText(this.xcaret.getHost());
     this.Nameserver.setText(this.xcaret.getNameserver());
@@ -134,7 +136,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.idestado.setSelectedItem(this.xcaret.getEstado());
     this.serv.setText(this.xcaret.getServicio());
     this.sql.setText(this.xcaret.getSqlversion());
-   // this.ed.setText(this.xcaret.getIdedicion());
+    this.ed.setText(this.xcaret.getIdedicion());
     this.ant.setText(this.xcaret.getAntivirus());
     this.so.setText(this.xcaret.getSistemaoperativo());
     this.soc.setText(this.xcaret.getSockets());
@@ -147,7 +149,7 @@ public class AgregarServers extends javax.swing.JInternalFrame {
     this.unid.setText(this.xcaret.getUnidadesgb());
     this.hy.setText(this.xcaret.getHypervisor());
     this.vh.setText(this.xcaret.getVersionhyper());
-   // this.idmarc.setText(this.xcaret.getIdmarca());
+   this.idmarc.setText(this.xcaret.getIdmarca());
     this.mode.setText(this.xcaret.getModelo());
     this.process.setText(this.xcaret.getProcesador());
     this.sertag.setText(this.xcaret.getServicestag());
@@ -679,6 +681,8 @@ public class AgregarServers extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel1.getAccessibleContext().setAccessibleName("Registrar Servidores\n");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -717,13 +721,13 @@ public class AgregarServers extends javax.swing.JInternalFrame {
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         if(no.getText().isEmpty()){
-  DesktopNotify.showDesktopMessage("Advertencia", "El campo Numero es obligatorio", DesktopNotify.TIP);
+  DesktopNotify.showDesktopMessage("Advertencia", "El campo Numero es obligatorio", DesktopNotify.TIP,4000L);
         }
         else if(udnnn.getText().isEmpty()){
-        DesktopNotify.showDesktopMessage("Advertencia", "Llene el campo Udn", DesktopNotify.TIP);    
+        DesktopNotify.showDesktopMessage("Advertencia", "Llene el campo Udn", DesktopNotify.TIP,4000L);    
         }
         else if( ids.getText().isEmpty() ){
-        DesktopNotify.showDesktopMessage("Advertencia", "Llene el campo Site", DesktopNotify.TIP);    
+        DesktopNotify.showDesktopMessage("Advertencia", "Llene el campo Site", DesktopNotify.TIP,4000L);    
         }
        
                 

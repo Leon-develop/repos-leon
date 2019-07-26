@@ -10,10 +10,14 @@ import Servicios.Conexion;
 import Servicios.Udn_servicio;
 import Servicios.Xcaret_servicio;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Udns;
 import modelo.Xcaret;
 import static servidoresxcaret.AgregarServers.ids;
@@ -29,6 +33,7 @@ DefaultTableModel n=new DefaultTableModel();
  public static String idd;
     private List<Udns> udns;
        static int Comprueba;
+       private TableRowSorter trsFiltro;
 
     /** Creates new form ModalUdn */
     public ModalUdn(java.awt.Frame parent, boolean modal) {
@@ -79,7 +84,8 @@ DefaultTableModel n=new DefaultTableModel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         modal = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        txtFiltro = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -111,36 +117,45 @@ DefaultTableModel n=new DefaultTableModel();
         jScrollPane2.setViewportView(modal);
         modal.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Seleccionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtFiltroActionPerformed(evt);
             }
         });
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
+        jLabel1.setText("Buscar Edicion");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,7 +171,7 @@ DefaultTableModel n=new DefaultTableModel();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
 
@@ -168,41 +183,20 @@ DefaultTableModel n=new DefaultTableModel();
     }//GEN-LAST:event_modalMouseClicked
 
     private void modalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMousePressed
-           if (evt.getClickCount() == 2) {
-
-            if (Comprueba == 1) {
-                
-                Integer idsite = (Integer) modal.getValueAt(modal.getSelectedRow(), 0);
-
-                   ids.setText(Integer.toString(idsite));
-               
-            } 
-           
-                  
-            if (Comprueba == 2) {
-                
-                Integer idsite = (Integer) modal.getValueAt(modal.getSelectedRow(), 0);
-
-                   ids.setText(Integer.toString(idsite));
-         
-            } 
-                
-            this.dispose();
-
-        }
+          if(evt.getClickCount()==2){
+        this.selec();
+          }
     }//GEN-LAST:event_modalMousePressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-  int fila_seleccionada = modal.getSelectedRow();
+public void selec(){
+     int fila_seleccionada = modal.getSelectedRow();
        if(fila_seleccionada >=0){
           // int decision = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
            //if(decision == 0){
-           int i=0;
            
            
-        int x= udns.get(  fila_seleccionada   ).getIdudn();
-        idd=Integer.toString(x);
+           
+    String x= udns.get(  fila_seleccionada   ).getUdn();
+        idd=(x);
 
 
 this.setVisible(false);
@@ -214,13 +208,7 @@ this.dispose();
            //   NewJFrame s=new NewJFrame();
              //  s.setVisible(true);
            }
-      
-
-
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+}
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
       
          AgregarServers.udnnn.setText(idd);
@@ -230,6 +218,30 @@ this.dispose();
         
         
     }//GEN-LAST:event_formWindowClosed
+
+  public void filtro() {
+trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
+
+}
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        txtFiltro.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText());
+                txtFiltro.setText(cadena);
+                repaint();
+                filtro();
+            }
+
+        });
+        trsFiltro = new TableRowSorter(modal.getModel());
+        modal.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,10 +286,11 @@ this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable modal;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 
 }

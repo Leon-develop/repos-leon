@@ -61,7 +61,7 @@ AgregarServers masc;
         n.addColumn("Status");
         n.addColumn("Servicio");
         n.addColumn("SQL-Versión");
-        n.addColumn("Edición");
+        n.addColumn("idedición");
         n.addColumn("Antivirus");
         n.addColumn("Sistema-Op");
         n.addColumn("Sockets");
@@ -75,7 +75,7 @@ AgregarServers masc;
         n.addColumn("Network-iSCI");
         n.addColumn("Hpervisor");
         n.addColumn("Versión-Hypervisor");
-        n.addColumn("Marca");
+        n.addColumn("Idmarca");
         n.addColumn("Modelo");
         n.addColumn("Procesador");
         n.addColumn("Services-Tag");
@@ -92,7 +92,7 @@ AgregarServers abrirventana = new AgregarServers();
  private void cargar_lista_producto(){
         try{
             this.xcaret= this.xcaret_servicio.recuperarTodas(Conexion.obtener());
-            /*DefaultTableModel dtm= (DefaultTableModel) tabla.getModel();*/
+           
             n.setRowCount(0);
             for(int i = 0; i < this.xcaret.size(); i++){
                 n.addRow(new Object[]{
@@ -197,7 +197,6 @@ AgregarServers abrirventana = new AgregarServers();
         NuevoCoonsul = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         m = new javax.swing.JTable();
-        txtFiltro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         comboFiltro = new javax.swing.JComboBox<>();
         pdf = new javax.swing.JButton();
@@ -207,6 +206,7 @@ AgregarServers abrirventana = new AgregarServers();
         txtContar = new javax.swing.JTextField();
         anterior = new javax.swing.JButton();
         paginas = new javax.swing.JSpinner(spinner);
+        txtFiltro = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -252,7 +252,7 @@ AgregarServers abrirventana = new AgregarServers();
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -261,12 +261,6 @@ AgregarServers abrirventana = new AgregarServers();
         });
         m.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane2.setViewportView(m);
-
-        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroKeyTyped(evt);
-            }
-        });
 
         jLabel1.setText("Buscar por");
 
@@ -307,6 +301,18 @@ AgregarServers abrirventana = new AgregarServers();
             }
         });
 
+        paginas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                paginasKeyTyped(evt);
+            }
+        });
+
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -320,8 +326,8 @@ AgregarServers abrirventana = new AgregarServers();
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -356,8 +362,9 @@ AgregarServers abrirventana = new AgregarServers();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboFiltro, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtFiltro)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboFiltro)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
@@ -398,22 +405,6 @@ AgregarServers abrirventana = new AgregarServers();
     private void comboFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboFiltroKeyTyped
 
     }//GEN-LAST:event_comboFiltroKeyTyped
-
-    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
-        txtFiltro.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(final KeyEvent e) {
-                String cadena = (txtFiltro.getText());
-                txtFiltro.setText(cadena);
-                repaint();
-                filtro();
-            }
-
-        });
-        trsFiltro = new TableRowSorter(m.getModel());
-        m.setRowSorter(trsFiltro);
-    }//GEN-LAST:event_txtFiltroKeyTyped
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         int fila_seleccionada =m.getSelectedRow();
@@ -507,6 +498,39 @@ AgregarServers abrirventana = new AgregarServers();
         this.m.setModel( datos );
         this.txtContar.setText( conexion.getNumPage() + " de " + conexion.getNumPages() );
     }//GEN-LAST:event_anteriorActionPerformed
+
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+         txtFiltro.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText());
+                txtFiltro.setText(cadena);
+                repaint();
+                filtro();
+            }
+
+        });
+        trsFiltro = new TableRowSorter(m.getModel());
+        m.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void paginasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paginasKeyTyped
+
+        paginas.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(final KeyEvent e) {
+            int cadena = Integer.parseInt(paginas.getModel().getValue().toString());
+              
+          
+                repaint();
+     
+            }
+             });
+    trsFiltro = new TableRowSorter(m.getModel());
+        m.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_paginasKeyTyped
 
      
     

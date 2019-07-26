@@ -49,8 +49,8 @@ public class Conexion {
       }
 
 
-    
-/* Variables para paginacion */     
+   
+// Variables para paginacion      
     private int numPage=0;
     private int numPages=0;
     private String[] columnames;
@@ -62,19 +62,21 @@ public class Conexion {
  * @param numPage Numero de Pagina
  * @return Matriz nxm con los registros que corresponde a Numero de Pagina dado por numPage
  */ 
+    
    public Object[][]  getPagina( int numPage, int numRegPagina )
    {        
        //Numero de pagina 
        this.numPage = ( numPage<=1 )? 1 : numPage;        
 
        //Consulta SQL para obtener todos los registros
-       String q  = "select idserv,numero,udn, site,host,nameserver,tipo,ip,"
-   + "estado, servicio,sqlversion,edicion,antivirus,sistemaoperativo,sockets,cores,cpu,rammb,ramdinamik,architecture,"
-    + "diskgb,unidadesgb,networkisci,hypervisor,versionhyper,marca,modelo,procesador,servicestag,activo \n" +
-"from servidores inner join udn on(udn.idudn=servidores.idudn)\n" +
-" inner join site on(site.idsite=servidores.idsite) \n" +
-"where udn.idudn and site.idsite\n" +
-" order by (site) asc"  ;
+       String q  = "select idserv,numero,udn,site,host,nameserver,tipo,\n" +
+"ip,estado,servicio,sqlversion,edicion,antivirus,sistemaoperativo,\n" +
+"sockets,cores,cpu,rammb,ramdinamik,architecture,diskgb,unidadesgb,networkisci,hypervisor,\n" +
+"versionhyper,marca,modelo,procesador,servicestag,activo\n" +
+"from servidores  inner join udn  on udn.idudn=servidores.idudn\n" +
+"inner join site  on site.idsite=servidores.idsite  inner join edicion on edicion.idedicion=servidores.idedicion\n" +
+"inner join marca on marca.idmarca=servidores.idmarca\n" +
+"order by (site) asc"  ;
 
        Statement st;
        ResultSet rs;
@@ -130,27 +132,32 @@ public class Conexion {
 
    /**
  * @return String[] Nombres de las columnas
- */   
+*/   
+    
    public String[] ColumNames()
    {       
        return columnames;
    }
 
-   /**
- * @return Numero de pagina actual de paginacion
- */
+   // @return Numero de pagina actual de paginacion
+ 
    public int getNumPage()
    {
        return this.numPage;
    }
 
-   /**
- * Numero total de paginas 
- */
+   
+ // Numero total de paginas 
+ 
    public int getNumPages()
    {
        return this.numPages;
    }
 
+  
+
+   
+
 }//--> fin clase
+
 

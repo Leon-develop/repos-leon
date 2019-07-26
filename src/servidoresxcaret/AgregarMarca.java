@@ -40,7 +40,8 @@ private void guardar(){
             System.out.println(ex.getMessage());
             
             
-            JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro");
+             JOptionPane.showMessageDialog(this, "Error:No se ha podido Gurdar\nDatos ya fue registrado Anteriomente");
+        this.limpiar();
         }
     
 }
@@ -51,6 +52,9 @@ private void guardar(){
      this.marca.setText(this.marc.getMarca());
 //yeahhh.....................
    
+}
+ public void limpiar(){
+    this.marca.setText(null);
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +70,6 @@ private void guardar(){
         jLabel2 = new javax.swing.JLabel();
         Registrar = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Marca\n"));
         setClosable(true);
         setIconifiable(true);
 
@@ -106,7 +109,7 @@ private void guardar(){
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +120,7 @@ private void guardar(){
                     .addComponent(jLabel2))
                 .addGap(43, 43, 43)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

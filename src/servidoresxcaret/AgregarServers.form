@@ -46,6 +46,9 @@
           </Border>
         </Property>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Registrar Servidores&#xa;"/>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">

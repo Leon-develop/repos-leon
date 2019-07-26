@@ -11,7 +11,10 @@ import Servicios.Marca_servicio;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import modelo.Edicion;
 import modelo.Marca;
 
@@ -20,22 +23,27 @@ import modelo.Marca;
  * @author Leo González
  */
 public class AgregarEdicion extends javax.swing.JInternalFrame {
-    private final Edicion_servicio edicion_servicio = new Edicion_servicio();
+       private final Edicion_servicio edicion_servicio = new Edicion_servicio();
     private Edicion edit;
     private List<Edicion> edits;
     Connection conexion;
 
 
-    /**
-     * Creates new form AgregarEdicion
-     */
+    
     public AgregarEdicion() {
         initComponents();
         this.edit = new Edicion();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+      
     }
+
+
+
     private void guardar(){
-        String idedicion = edition.getText();
-        this.edit.setEdicion(idedicion);
+        String ided = edition.getText();
+        
+        this.edit.setEdicion(ided);
+        
         try{
             this.edicion_servicio.guardar(Conexion.obtener(), this.edit);
                         
@@ -43,16 +51,18 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
             
             
-            JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro");
+             JOptionPane.showMessageDialog(this, "Error:No se ha podido Gurdar\nDatos ya fue registrado Anteriomente");
+       limpiar();
         }
-    
 }
     public AgregarEdicion(Edicion ad_p){
         initComponents();
         this.edit = ad_p;
         this.edition.setText(this.edit.getEdicion());
     }
-
+public void limpiar(){
+    this.edition.setText(null);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,12 +77,15 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         Registrar = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Edición"));
-        setClosable(true);
-        setIconifiable(true);
+        setBackground(new java.awt.Color(104, 186, 146));
+        setBorder(null);
+        setForeground(new java.awt.Color(113, 192, 135));
+        setOpaque(true);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
 
+        edition.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(176, 199, 212), new java.awt.Color(176, 199, 212)));
         edition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editionActionPerformed(evt);
@@ -84,12 +97,14 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Edicion");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Edición:");
 
-        Registrar.setBackground(new java.awt.Color(255, 255, 255));
+        Registrar.setBackground(new java.awt.Color(91, 178, 147));
         Registrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Registrar.setText("Registrar");
+        Registrar.setContentAreaFilled(false);
+        Registrar.setOpaque(true);
         Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarActionPerformed(evt);
@@ -101,24 +116,29 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(edition, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(172, 172, 172)
+                            .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(edition, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edition, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(edition, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,7 +149,7 @@ public class AgregarEdicion extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

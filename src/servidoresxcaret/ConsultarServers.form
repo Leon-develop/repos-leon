@@ -61,8 +61,8 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="comboFiltro" min="-2" pref="137" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtFiltro" min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="txtFiltro" min="-2" pref="106" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -106,8 +106,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="comboFiltro" alignment="1" max="32767" attributes="0"/>
-                      <Component id="txtFiltro" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="comboFiltro" alignment="3" max="32767" attributes="0"/>
+                          <Component id="txtFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="jLabel1" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -174,7 +176,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="29" rowCount="0">
-                    <Column editable="true" title="No" type="java.lang.Object"/>
+                    <Column editable="false" title="No" type="java.lang.Object"/>
                     <Column editable="false" title="Udn" type="java.lang.Object"/>
                     <Column editable="false" title="Site" type="java.lang.Object"/>
                     <Column editable="false" title="HOST" type="java.lang.Object"/>
@@ -182,27 +184,27 @@
                     <Column editable="false" title="Tipo" type="java.lang.Object"/>
                     <Column editable="false" title="IP" type="java.lang.Object"/>
                     <Column editable="false" title="Estado" type="java.lang.Object"/>
-                    <Column editable="true" title="Servicio" type="java.lang.Object"/>
-                    <Column editable="true" title="Sql-version" type="java.lang.Object"/>
-                    <Column editable="true" title="Edicion" type="java.lang.Object"/>
-                    <Column editable="true" title="Antivirus" type="java.lang.Object"/>
-                    <Column editable="true" title="Sistema-Operativo" type="java.lang.Object"/>
-                    <Column editable="true" title="Sockets" type="java.lang.Object"/>
-                    <Column editable="true" title="Cores" type="java.lang.Object"/>
-                    <Column editable="true" title="CPU" type="java.lang.Object"/>
-                    <Column editable="true" title="Ram-MB" type="java.lang.Object"/>
-                    <Column editable="true" title="Ram-Dinamik" type="java.lang.Object"/>
-                    <Column editable="true" title="Architecture" type="java.lang.Object"/>
-                    <Column editable="true" title="DiskC-GB" type="java.lang.Object"/>
-                    <Column editable="true" title="Unidades-Gb" type="java.lang.Object"/>
-                    <Column editable="true" title="Network-iSCI" type="java.lang.Object"/>
-                    <Column editable="true" title="Hypervisor" type="java.lang.Object"/>
-                    <Column editable="true" title="Version-Hypervisor" type="java.lang.Object"/>
+                    <Column editable="false" title="Servicio" type="java.lang.Object"/>
+                    <Column editable="false" title="Sql-version" type="java.lang.Object"/>
+                    <Column editable="false" title="Edicion" type="java.lang.Object"/>
+                    <Column editable="false" title="Antivirus" type="java.lang.Object"/>
+                    <Column editable="false" title="Sistema-Operativo" type="java.lang.Object"/>
+                    <Column editable="false" title="Sockets" type="java.lang.Object"/>
+                    <Column editable="false" title="Cores" type="java.lang.Object"/>
+                    <Column editable="false" title="CPU" type="java.lang.Object"/>
+                    <Column editable="false" title="Ram-MB" type="java.lang.Object"/>
+                    <Column editable="false" title="Ram-Dinamik" type="java.lang.Object"/>
+                    <Column editable="false" title="Architecture" type="java.lang.Object"/>
+                    <Column editable="false" title="DiskC-GB" type="java.lang.Object"/>
+                    <Column editable="false" title="Unidades-Gb" type="java.lang.Object"/>
+                    <Column editable="false" title="Network-iSCI" type="java.lang.Object"/>
+                    <Column editable="false" title="Hypervisor" type="java.lang.Object"/>
+                    <Column editable="false" title="Version-Hypervisor" type="java.lang.Object"/>
                     <Column editable="false" title="Marca" type="java.lang.Object"/>
                     <Column editable="false" title="Modelo" type="java.lang.Object"/>
                     <Column editable="false" title="Mod_Procesador" type="java.lang.Object"/>
-                    <Column editable="true" title="Services-Tag" type="java.lang.Object"/>
-                    <Column editable="true" title="Activo" type="java.lang.Object"/>
+                    <Column editable="false" title="Services-Tag" type="java.lang.Object"/>
+                    <Column editable="false" title="Activo" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="autoResizeMode" type="int" value="0"/>
@@ -362,11 +364,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="txtFiltro">
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFiltroKeyTyped"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar por"/>
@@ -425,6 +422,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtContar">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="anterior">
           <Properties>
@@ -435,9 +435,17 @@
           </Events>
         </Component>
         <Component class="javax.swing.JSpinner" name="paginas">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="paginasKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(spinner)"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFiltro">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFiltroKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

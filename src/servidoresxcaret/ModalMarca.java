@@ -6,10 +6,8 @@
 package servidoresxcaret;
 
 import Servicios.Conexion;
-import Servicios.Edicion_servicio;
 import Servicios.Marca_servicio;
-import com.lowagie.text.Font;
-import java.awt.Color;
+import Servicios.Site_servicio;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -18,51 +16,45 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import modelo.Edicion;
 import modelo.Marca;
-
+import modelo.Site;
+import static servidoresxcaret.AgregarServers.idmarc;
+import static servidoresxcaret.ModalSite.Comprueba;
+import static servidoresxcaret.ModalSite.idd;
 
 /**
  *
- * @author Leo González
+ * @author heriberto guzman
  */
-public class ModalEdicion extends javax.swing.JDialog {
-     DefaultTableModel n=new DefaultTableModel();
- private final Edicion_servicio edicion_servicio = new Edicion_servicio();
+public class ModalMarca extends javax.swing.JDialog {
+DefaultTableModel n=new DefaultTableModel();
+ private final Marca_servicio marca_servicio = new Marca_servicio();
  public static String idd;
-    private List<Edicion> edit;
+    private List<Marca> marca;
        static int Comprueba;
-        private TableRowSorter trsFiltro;
+       private TableRowSorter trsFiltro;
     
-
     /**
-     * Creates new form ModalEdicion
+     * Creates new form ModalMarca
      */
-    public ModalEdicion(java.awt.Frame parent, boolean modal) {
+    public ModalMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         
-        n.addColumn("ID");
-        n.addColumn("Edicion");
+        n.addColumn("Id");
+           n.addColumn("Marca");
+       
         this.modal.setModel(n);
-        this.cargar_lista_producto();
-      
-     this.modal.getTableHeader().setFont(new java.awt.Font("Segue ui",Font.BOLD,12));
-     this.modal.getTableHeader().setOpaque(false);
-     this.modal.getTableHeader().setBackground(new Color(32,136,203) );
-       this.modal.getTableHeader().setForeground(new Color(255,255,255) );
-         this.modal.setRowHeight(25);
+        cargar_lista_marca();
     }
-    
-    private void cargar_lista_producto(){
+private void cargar_lista_marca(){
         try{
-            this.edit= this.edicion_servicio.recuperarTodas(Conexion.obtener());
+            this.marca= this.marca_servicio.recuperarTodas(Conexion.obtener());
             /*DefaultTableModel dtm= (DefaultTableModel) tabla.getModel();*/
             n.setRowCount(0);
-            for(int i = 0; i < this.edit.size(); i++){
+            for(int i = 0; i < this.marca.size(); i++){
                 n.addRow(new Object[]{
-                this.edit.get(i).getIdedicion(),
-                this.edit.get(i).getEdicion(),
+                this.marca.get(i).getIdmarca(),
+                this.marca.get(i).getMarca(),
                 
                         });
                 
@@ -74,7 +66,6 @@ public class ModalEdicion extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ha surgido un error y no se han podido recuperar los registros");
     }
  }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,9 +88,7 @@ public class ModalEdicion extends javax.swing.JDialog {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setAlignmentX(0.0F);
-        jPanel2.setAlignmentY(0.0F);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Elegir Site", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
 
         modal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,12 +99,6 @@ public class ModalEdicion extends javax.swing.JDialog {
             }
         ));
         modal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        modal.setFocusable(false);
-        modal.setGridColor(new java.awt.Color(32, 136, 203));
-        modal.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        modal.setOpaque(false);
-        modal.setRowHeight(25);
-        modal.setSelectionBackground(new java.awt.Color(125, 155, 178));
         modal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 modalMouseClicked(evt);
@@ -126,7 +109,7 @@ public class ModalEdicion extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(modal);
 
-        jLabel1.setText("Buscar Edicion");
+        jLabel1.setText("Buscar Marca");
 
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -139,41 +122,45 @@ public class ModalEdicion extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addGap(49, 49, 49))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-
-        jPanel2.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,38 +168,42 @@ public class ModalEdicion extends javax.swing.JDialog {
     private void modalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMouseClicked
 
     }//GEN-LAST:event_modalMouseClicked
-
-    private void modalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMousePressed
-        if (evt.getClickCount() == 2) {
-            this.selec();
-        }
-    }//GEN-LAST:event_modalMousePressed
 public void selec(){
-    int fila_seleccionada = modal.getSelectedRow();
-        if(fila_seleccionada >=0){
-            // int decision = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
-            //if(decision == 0){
-             
+     int fila_seleccionada = modal.getSelectedRow();
+       if(fila_seleccionada >=0){
+          // int decision = JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea eliminar este registro?", "Advertencia", JOptionPane.YES_NO_OPTION);
+           //if(decision == 0){
+           int i=0;
+           
+         
+       String x= marca.get(fila_seleccionada).getMarca();
+        idd=(x);
+       
 
-                String x= edit.get(fila_seleccionada).getEdicion();
-                idd=(x);
+this.setVisible(false);
+this.dispose();
+ }else{
+           
+           JOptionPane.showMessageDialog(null, "Por favor seleccione un registro"); 
 
-                this.setVisible(false);
-                this.dispose();
-            }else{
-
-                JOptionPane.showMessageDialog(null, "Por favor seleccione un registro");
-
-                //   NewJFrame s=new NewJFrame();
-                //  s.setVisible(true);
-            }
+   
+           //   NewJFrame s=new NewJFrame();
+             //  s.setVisible(true);
+           }
 }
+    private void modalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modalMousePressed
+         if(evt.getClickCount()==2){
+        this.selec();
+          }
+    }//GEN-LAST:event_modalMousePressed
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       AgregarServers.ed.setText(idd);
+         AgregarServers.idmarc.setText(idd);
     }//GEN-LAST:event_formWindowClosed
 
   public void filtro() {
 trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
+
 }
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
@@ -248,20 +239,20 @@ trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModalEdicion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModalEdicion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModalEdicion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModalEdicion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModalMarca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModalEdicion dialog = new ModalEdicion(new javax.swing.JFrame(), true);
+                ModalMarca dialog = new ModalMarca(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

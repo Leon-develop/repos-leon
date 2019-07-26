@@ -54,7 +54,8 @@ public class AgregarSite extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
             
             
-            JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro");
+            JOptionPane.showMessageDialog(this, "Error:No se ha podido Gurdar\nDatos ya fue registrado Anteriomente");
+        this.limpiar();
         }
     }
      //
@@ -66,6 +67,9 @@ public class AgregarSite extends javax.swing.JInternalFrame {
      this.site.setText(this.sit.getSite());
 //yeahhh.....................
    
+}
+      public void limpiar(){
+    this.site.setText(null);
 }
     /**
      * Creates new form AgregarSite
@@ -135,7 +139,7 @@ public class AgregarSite extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(43, 43, 43)
                 .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

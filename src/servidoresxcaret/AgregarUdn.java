@@ -58,7 +58,8 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
             
             
-            JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro");
+             JOptionPane.showMessageDialog(this, "Error:No se ha podido Gurdar\nDatos ya fue registrado Anteriomente");
+        this.limpiar();
         }
     }
      //
@@ -69,6 +70,9 @@ public class AgregarUdn extends javax.swing.JInternalFrame {
     //this.ID.setText(this.producto.getId());
      this.udnss.setText(this.udn.getUdn());//cargar la vida con locura.....................
    
+}
+      public void limpiar(){
+    this.udnss.setText(null);
 }
  /**
   * si tu vida
